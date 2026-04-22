@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Categories - Serenity Finance</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style type="text/tailwindcss">
+        @layer utilities {
+            .pb-safe {
+                padding-bottom: env(safe-area-inset-bottom);
+            }
+        }
+        .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            -webkit-font-feature-settings: 'liga';
+            -webkit-font-smoothing: antialiased;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "background": "#f7f9fb",
+                    "on-primary-fixed": "#100563",
+                    "on-primary-container": "#9c9af4",
+                    "on-primary": "#ffffff",
+                    "on-surface-variant": "#474651",
+                    "surface-bright": "#f7f9fb",
+                    "primary": "#1a146b",
+                    "secondary-fixed-dim": "#68dba9",
+                    "surface-container-highest": "#e0e3e5",
+                    "surface-container-low": "#f2f4f6",
+                    "on-tertiary-fixed-variant": "#920028",
+                    "surface": "#f7f9fb",
+                    "on-error-container": "#93000a",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-tint": "#5654a8",
+                    "on-error": "#ffffff",
+                    "primary-container": "#312e81",
+                    "on-tertiary-container": "#ff7a85",
+                    "error-container": "#ffdad6",
+                    "tertiary-container": "#790020",
+                    "error": "#ba1a1a",
+                    "on-surface": "#191c1e",
+                    "surface-container": "#eceef0",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed-variant": "#3e3c8f",
+                    "tertiary": "#500012",
+                    "on-secondary-fixed-variant": "#005137",
+                    "outline-variant": "#c8c5d3",
+                    "primary-fixed-dim": "#c3c0ff",
+                    "tertiary-fixed-dim": "#ffb3b6",
+                    "inverse-primary": "#c3c0ff",
+                    "primary-fixed": "#e2dfff",
+                    "inverse-surface": "#2d3133",
+                    "secondary-container": "#82f5c1",
+                    "outline": "#777682",
+                    "surface-dim": "#d8dadc",
+                    "tertiary-fixed": "#ffdada",
+                    "on-secondary-container": "#00714e",
+                    "surface-variant": "#e0e3e5",
+                    "secondary-fixed": "#85f8c4",
+                    "secondary": "#006c4a",
+                    "surface-container-high": "#e6e8ea",
+                    "on-background": "#191c1e",
+                    "inverse-on-surface": "#eff1f3",
+                    "on-secondary-fixed": "#002114",
+                    "on-tertiary-fixed": "#40000c"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sm": "8px",
+                    "xl": "32px",
+                    "base": "4px",
+                    "md": "16px",
+                    "xs": "4px",
+                    "lg": "24px",
+                    "margin-mobile": "20px",
+                    "gutter-mobile": "16px"
+            },
+            "fontFamily": {
+                    "label-md": [
+                            "Inter"
+                    ],
+                    "body-md": [
+                            "Inter"
+                    ],
+                    "label-caps": [
+                            "Inter"
+                    ],
+                    "display": [
+                            "Inter"
+                    ],
+                    "body-lg": [
+                            "Inter"
+                    ],
+                    "h2": [
+                            "Inter"
+                    ],
+                    "body-sm": [
+                            "Inter"
+                    ],
+                    "h1": [
+                            "Inter"
+                    ]
+            },
+            "fontSize": {
+                    "label-md": [
+                            "12px",
+                            {
+                                    "lineHeight": "16px",
+                                    "letterSpacing": "0.01em",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "body-md": [
+                            "16px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "label-caps": [
+                            "11px",
+                            {
+                                    "lineHeight": "16px",
+                                    "letterSpacing": "0.05em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "display": [
+                            "32px",
+                            {
+                                    "lineHeight": "40px",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "body-lg": [
+                            "18px",
+                            {
+                                    "lineHeight": "28px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "h2": [
+                            "20px",
+                            {
+                                    "lineHeight": "28px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-sm": [
+                            "14px",
+                            {
+                                    "lineHeight": "20px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "h1": [
+                            "24px",
+                            {
+                                    "lineHeight": "32px",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "600"
+                            }
+                    ]
+            }
+        },
+        },
+      }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background min-h-screen flex flex-col font-body-md text-on-surface antialiased selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopAppBar -->
+<nav class="fixed top-0 w-full z-50 flex items-center justify-between px-5 h-16 w-full max-w-7xl mx-auto bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.04)] border-none">
+<div class="hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors active:scale-95 duration-200 cursor-pointer rounded-full h-8 w-8 overflow-hidden bg-surface-container-high border border-surface-container-lowest shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
+<img alt="User profile photo" class="w-full h-full object-cover" data-alt="Portrait of a smiling professional person with short brown hair in soft natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFftox-HDM4jGiicMQiCr6uhxFTyihM4N3gefY5YF9XswfszoBMlbSz-l0wywOseUXzDG2qulhaxOjwmenuMXvb5d_ibjN2mGdafmaPfOJ1n7MJ--zW2niXRyV8hnguY44uLiB25wgmX3kYCI7w7J0qNrknDS1r0EOyOfKbnyca7-Gn2wz2j7Ltn5CdVfFdTyObW42Rn6RbAlxfUpCg3FMe4oZ8fFpFVJCVBCH7FZARYQSLQBOa9LM1FwOqzHhq-Qvlktq7meuY_rO"/>
+</div>
+<div class="font-['Inter'] font-medium text-slate-900 dark:text-slate-100 text-lg font-bold tracking-tight text-indigo-900 dark:text-indigo-100">
+            Serenity Finance
+        </div>
+<button aria-label="Notifications" class="text-indigo-900 dark:text-indigo-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors active:scale-95 duration-200 p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</nav>
+<!-- Main Content Canvas -->
+<main class="pt-24 pb-32 px-margin-mobile max-w-7xl mx-auto flex-grow w-full">
+<header class="mb-lg">
+<h1 class="font-h1 text-h1 text-on-surface mb-md">Categories</h1>
+<!-- Segmented Control -->
+<div class="flex p-1 bg-surface-container-high rounded-full w-full">
+<button class="flex-1 py-2 text-center rounded-full bg-surface-container-lowest shadow-[0_2px_8px_rgba(0,0,0,0.04)] font-label-md text-label-md text-on-surface transition-all">Expenses</button>
+<button class="flex-1 py-2 text-center rounded-full font-label-md text-label-md text-on-surface-variant hover:bg-surface-variant transition-colors">Income</button>
+</div>
+</header>
+<!-- Bento Grid Categories -->
+<div class="grid grid-cols-2 gap-md md:grid-cols-4">
+<!-- Category: Housing (Large Focus Card) -->
+<div class="col-span-2 bg-surface-container-lowest rounded-[20px] p-md shadow-[0_4px_20px_rgba(0,0,0,0.02)] border border-surface-container-low flex flex-col justify-between hover:shadow-[0_8px_24px_rgba(0,0,0,0.06)] transition-shadow duration-300 cursor-pointer">
+<div class="flex items-center justify-between mb-xl">
+<div class="flex items-center gap-sm">
+<div class="w-12 h-12 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+</div>
+<span class="font-h2 text-h2 text-on-surface">Housing</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant bg-surface-container px-2 py-1 rounded-full">60%</span>
+</div>
+<div class="mt-auto">
+<div class="font-display text-display text-on-surface mb-sm tracking-tight">$1,500<span class="font-body-md text-body-md text-outline-variant">.00</span></div>
+<div class="h-2 w-full bg-primary-fixed-dim/20 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[60%] rounded-full"></div>
+</div>
+<div class="font-label-md text-label-md text-outline mt-xs">of $2,500 budget</div>
+</div>
+</div>
+<!-- Category: Food -->
+<div class="col-span-1 bg-surface-container-lowest rounded-[20px] p-md shadow-[0_4px_20px_rgba(0,0,0,0.02)] border border-surface-container-low flex flex-col hover:shadow-[0_8px_24px_rgba(0,0,0,0.06)] transition-shadow duration-300 cursor-pointer">
+<div class="w-10 h-10 rounded-full bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed mb-xl">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">restaurant</span>
+</div>
+<div class="mt-auto">
+<span class="font-label-md text-label-md text-on-surface-variant block mb-base">Food &amp; Dining</span>
+<div class="font-h2 text-h2 text-on-surface block">$450.00</div>
+</div>
+</div>
+<!-- Category: Transport -->
+<div class="col-span-1 bg-surface-container-lowest rounded-[20px] p-md shadow-[0_4px_20px_rgba(0,0,0,0.02)] border border-surface-container-low flex flex-col hover:shadow-[0_8px_24px_rgba(0,0,0,0.06)] transition-shadow duration-300 cursor-pointer">
+<div class="w-10 h-10 rounded-full bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed mb-xl">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">directions_car</span>
+</div>
+<div class="mt-auto">
+<span class="font-label-md text-label-md text-on-surface-variant block mb-base">Transport</span>
+<div class="font-h2 text-h2 text-on-surface block">$120.00</div>
+</div>
+</div>
+<!-- Category: Shopping -->
+<div class="col-span-1 bg-surface-container-lowest rounded-[20px] p-md shadow-[0_4px_20px_rgba(0,0,0,0.02)] border border-surface-container-low flex flex-col hover:shadow-[0_8px_24px_rgba(0,0,0,0.06)] transition-shadow duration-300 cursor-pointer">
+<div class="w-10 h-10 rounded-full bg-error-container flex items-center justify-center text-on-error-container mb-xl">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">shopping_bag</span>
+</div>
+<div class="mt-auto">
+<span class="font-label-md text-label-md text-on-surface-variant block mb-base">Shopping</span>
+<div class="font-h2 text-h2 text-on-surface block">$340.00</div>
+</div>
+</div>
+<!-- Category: Utilities -->
+<div class="col-span-1 bg-surface-container-lowest rounded-[20px] p-md shadow-[0_4px_20px_rgba(0,0,0,0.02)] border border-surface-container-low flex flex-col hover:shadow-[0_8px_24px_rgba(0,0,0,0.06)] transition-shadow duration-300 cursor-pointer">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container mb-xl">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+<div class="mt-auto">
+<span class="font-label-md text-label-md text-on-surface-variant block mb-base">Utilities</span>
+<div class="font-h2 text-h2 text-on-surface block">$210.00</div>
+</div>
+</div>
+<!-- Category: Health -->
+<div class="col-span-2 bg-surface-container-lowest rounded-[20px] p-md shadow-[0_4px_20px_rgba(0,0,0,0.02)] border border-surface-container-low flex flex-row items-center justify-between hover:shadow-[0_8px_24px_rgba(0,0,0,0.06)] transition-shadow duration-300 cursor-pointer">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</div>
+<span class="font-body-lg text-body-lg text-on-surface font-medium">Health &amp; Wellness</span>
+</div>
+<div class="font-h2 text-h2 text-on-surface">$85.00</div>
+</div>
+</div>
+</main>
+<!-- FAB: Create Custom Category -->
+<button aria-label="Create Custom Category" class="fixed bottom-28 right-6 w-14 h-14 rounded-[16px] bg-primary text-on-primary shadow-[0_8px_24px_rgba(26,20,107,0.25)] flex items-center justify-center hover:bg-primary-container hover:shadow-[0_12px_32px_rgba(26,20,107,0.35)] transition-all active:scale-95 z-40 md:right-10">
+<span class="material-symbols-outlined" style="font-variation-settings: 'wght' 500, 'FILL' 1;">add</span>
+</button>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full rounded-t-[24px] z-50 flex justify-around items-center h-20 px-6 pb-safe w-full bg-white/90 dark:bg-slate-900/90 backdrop-blur-lg border-t border-slate-100 dark:border-slate-800 shadow-[0_-8px_24px_rgba(0,0,0,0.04)] md:hidden">
+<button aria-label="home" class="flex flex-col items-center text-slate-400 dark:text-slate-600 hover:text-indigo-500 dark:hover:text-indigo-300 transition-all active:scale-90 duration-300">
+<span class="material-symbols-outlined">home</span>
+</button>
+<button aria-label="account_balance_wallet" class="flex flex-col items-center text-slate-400 dark:text-slate-600 hover:text-indigo-500 dark:hover:text-indigo-300 transition-all active:scale-90 duration-300">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+</button>
+<!-- ACTIVE TAB: pie_chart -->
+<button aria-current="page" aria-label="pie_chart" class="flex flex-col items-center text-indigo-600 dark:text-indigo-400 after:content-[''] after:w-1 after:h-1 after:bg-indigo-600 after:rounded-full after:mt-1 hover:text-indigo-500 dark:hover:text-indigo-300 transition-all active:scale-90 duration-300">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">pie_chart</span>
+</button>
+<button aria-label="assessment" class="flex flex-col items-center text-slate-400 dark:text-slate-600 hover:text-indigo-500 dark:hover:text-indigo-300 transition-all active:scale-90 duration-300">
+<span class="material-symbols-outlined">assessment</span>
+</button>
+<button aria-label="account_balance" class="flex flex-col items-center text-slate-400 dark:text-slate-600 hover:text-indigo-500 dark:hover:text-indigo-300 transition-all active:scale-90 duration-300">
+<span class="material-symbols-outlined">account_balance</span>
+</button>
+</nav>
+</body></html>

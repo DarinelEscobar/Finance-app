@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Welcome - Serenity Finance</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "background": "#f7f9fb",
+                    "on-primary-fixed": "#100563",
+                    "on-primary-container": "#9c9af4",
+                    "on-primary": "#ffffff",
+                    "on-surface-variant": "#474651",
+                    "surface-bright": "#f7f9fb",
+                    "primary": "#1a146b",
+                    "secondary-fixed-dim": "#68dba9",
+                    "surface-container-highest": "#e0e3e5",
+                    "surface-container-low": "#f2f4f6",
+                    "on-tertiary-fixed-variant": "#920028",
+                    "surface": "#f7f9fb",
+                    "on-error-container": "#93000a",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-tint": "#5654a8",
+                    "on-error": "#ffffff",
+                    "primary-container": "#312e81",
+                    "on-tertiary-container": "#ff7a85",
+                    "error-container": "#ffdad6",
+                    "tertiary-container": "#790020",
+                    "error": "#ba1a1a",
+                    "on-surface": "#191c1e",
+                    "surface-container": "#eceef0",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed-variant": "#3e3c8f",
+                    "tertiary": "#500012",
+                    "on-secondary-fixed-variant": "#005137",
+                    "outline-variant": "#c8c5d3",
+                    "primary-fixed-dim": "#c3c0ff",
+                    "tertiary-fixed-dim": "#ffb3b6",
+                    "inverse-primary": "#c3c0ff",
+                    "primary-fixed": "#e2dfff",
+                    "inverse-surface": "#2d3133",
+                    "secondary-container": "#82f5c1",
+                    "outline": "#777682",
+                    "surface-dim": "#d8dadc",
+                    "tertiary-fixed": "#ffdada",
+                    "on-secondary-container": "#00714e",
+                    "surface-variant": "#e0e3e5",
+                    "secondary-fixed": "#85f8c4",
+                    "secondary": "#006c4a",
+                    "surface-container-high": "#e6e8ea",
+                    "on-background": "#191c1e",
+                    "inverse-on-surface": "#eff1f3",
+                    "on-secondary-fixed": "#002114",
+                    "on-tertiary-fixed": "#40000c"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sm": "8px",
+                    "xl": "32px",
+                    "base": "4px",
+                    "md": "16px",
+                    "xs": "4px",
+                    "lg": "24px",
+                    "margin-mobile": "20px",
+                    "gutter-mobile": "16px"
+            },
+            "fontFamily": {
+                    "label-md": [
+                            "Inter"
+                    ],
+                    "body-md": [
+                            "Inter"
+                    ],
+                    "label-caps": [
+                            "Inter"
+                    ],
+                    "display": [
+                            "Inter"
+                    ],
+                    "body-lg": [
+                            "Inter"
+                    ],
+                    "h2": [
+                            "Inter"
+                    ],
+                    "body-sm": [
+                            "Inter"
+                    ],
+                    "h1": [
+                            "Inter"
+                    ]
+            },
+            "fontSize": {
+                    "label-md": [
+                            "12px",
+                            {
+                                    "lineHeight": "16px",
+                                    "letterSpacing": "0.01em",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "body-md": [
+                            "16px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "label-caps": [
+                            "11px",
+                            {
+                                    "lineHeight": "16px",
+                                    "letterSpacing": "0.05em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "display": [
+                            "32px",
+                            {
+                                    "lineHeight": "40px",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "body-lg": [
+                            "18px",
+                            {
+                                    "lineHeight": "28px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "h2": [
+                            "20px",
+                            {
+                                    "lineHeight": "28px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-sm": [
+                            "14px",
+                            {
+                                    "lineHeight": "20px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "h1": [
+                            "24px",
+                            {
+                                    "lineHeight": "32px",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "600"
+                            }
+                    ]
+            }
+    },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            -webkit-tap-highlight-color: transparent;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-bright text-on-surface font-body-md h-screen w-full flex flex-col overflow-hidden m-0 p-0 selection:bg-primary-fixed selection:text-primary">
+<main class="flex-1 w-full max-w-[480px] mx-auto flex flex-col relative h-full bg-background shadow-[0_0_40px_rgba(0,0,0,0.02)]">
+<div class="flex-[1.2] w-full relative flex flex-col items-center justify-center p-8 overflow-hidden bg-gradient-to-b from-surface-lowest to-surface-bright">
+<div class="absolute top-12 -left-12 w-64 h-64 bg-primary-fixed-dim/30 rounded-full blur-[60px] pointer-events-none"></div>
+<div class="absolute -bottom-12 -right-12 w-80 h-80 bg-secondary-container/30 rounded-full blur-[60px] pointer-events-none"></div>
+<img alt="Financial Serenity Illustration" class="w-full max-w-[320px] aspect-square object-cover rounded-[48px] shadow-[0_20px_40px_rgba(26,20,107,0.08)] relative z-10" data-alt="Soft, minimal 3D illustration of floating glossy coins, a monstera leaf, and a translucent frosted glass card, rendered in pastel indigo and mint green colors with soft diffused studio lighting, conveying financial growth, peace, and premium serenity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6K6LSoPJPwV1b7iEcK7oCKh4WUtVvjLemMcVaT6Xs2O0nf9i0CIfoAvmqJa6K439fvHmoV6Q9DMrGX-yzpXK6YdQmJ_B-0QLkFxPe83gUcTkLktG7LJDLvbuuHh4n8yDnki-8m2-0s5XnsJyarIUUB6TeYy9PFKrAIgglJozNmWayrVstGKWy1OiktfsxXRqd3-ZPdXZl8Ese7BTCmZBSboBA1zcMs8qTq1QdTredltw9c7i2ru9x8yGtcXXO5d9o1hxQRHugkd31"/>
+</div>
+<div class="w-full bg-surface-container-lowest rounded-t-[32px] px-margin-mobile pt-10 pb-12 flex flex-col items-center text-center shadow-[0_-8px_32px_rgba(0,0,0,0.03)] relative z-20">
+<div class="flex items-center gap-2 mb-xl">
+<div class="w-8 h-2 rounded-full bg-primary transition-all duration-300"></div>
+<div class="w-2 h-2 rounded-full bg-surface-dim transition-all duration-300"></div>
+<div class="w-2 h-2 rounded-full bg-surface-dim transition-all duration-300"></div>
+</div>
+<h1 class="font-display text-display text-on-primary-fixed mb-md tracking-tight w-full px-4">
+                Master your money, effortlessly.
+            </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-xl px-2 max-w-[360px]">
+                Track spending, build budgets, and uncover insights that bring financial serenity.
+            </p>
+<div class="w-full flex flex-col gap-md mt-auto">
+<button class="w-full h-14 bg-primary text-on-primary rounded-xl flex items-center justify-center font-body-lg text-body-lg shadow-[0_4px_20px_rgba(26,20,107,0.15)] hover:bg-primary-container transition-colors active:scale-[0.98]">
+                    Get Started
+                </button>
+<div class="flex items-center justify-center gap-6 mt-4">
+<button class="text-primary font-body-md text-body-md hover:text-primary-container transition-colors">
+                        Sign In
+                    </button>
+<div class="w-1.5 h-1.5 rounded-full bg-outline-variant"></div>
+<button class="text-on-surface-variant font-body-md text-body-md hover:text-on-surface transition-colors">
+                        Continue as Guest
+                    </button>
+</div>
+</div>
+</div>
+</main>
+</body></html>

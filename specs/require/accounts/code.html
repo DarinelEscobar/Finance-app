@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Serenity Finance - Accounts</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "background": "#f7f9fb",
+                      "on-primary-fixed": "#100563",
+                      "on-primary-container": "#9c9af4",
+                      "on-primary": "#ffffff",
+                      "on-surface-variant": "#474651",
+                      "surface-bright": "#f7f9fb",
+                      "primary": "#1a146b",
+                      "secondary-fixed-dim": "#68dba9",
+                      "surface-container-highest": "#e0e3e5",
+                      "surface-container-low": "#f2f4f6",
+                      "on-tertiary-fixed-variant": "#920028",
+                      "surface": "#f7f9fb",
+                      "on-error-container": "#93000a",
+                      "on-tertiary": "#ffffff",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-tint": "#5654a8",
+                      "on-error": "#ffffff",
+                      "primary-container": "#312e81",
+                      "on-tertiary-container": "#ff7a85",
+                      "error-container": "#ffdad6",
+                      "tertiary-container": "#790020",
+                      "error": "#ba1a1a",
+                      "on-surface": "#191c1e",
+                      "surface-container": "#eceef0",
+                      "on-secondary": "#ffffff",
+                      "on-primary-fixed-variant": "#3e3c8f",
+                      "tertiary": "#500012",
+                      "on-secondary-fixed-variant": "#005137",
+                      "outline-variant": "#c8c5d3",
+                      "primary-fixed-dim": "#c3c0ff",
+                      "tertiary-fixed-dim": "#ffb3b6",
+                      "inverse-primary": "#c3c0ff",
+                      "primary-fixed": "#e2dfff",
+                      "inverse-surface": "#2d3133",
+                      "secondary-container": "#82f5c1",
+                      "outline": "#777682",
+                      "surface-dim": "#d8dadc",
+                      "tertiary-fixed": "#ffdada",
+                      "on-secondary-container": "#00714e",
+                      "surface-variant": "#e0e3e5",
+                      "secondary-fixed": "#85f8c4",
+                      "secondary": "#006c4a",
+                      "surface-container-high": "#e6e8ea",
+                      "on-background": "#191c1e",
+                      "inverse-on-surface": "#eff1f3",
+                      "on-secondary-fixed": "#002114",
+                      "on-tertiary-fixed": "#40000c"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "sm": "8px",
+                      "xl": "32px",
+                      "base": "4px",
+                      "md": "16px",
+                      "xs": "4px",
+                      "lg": "24px",
+                      "margin-mobile": "20px",
+                      "gutter-mobile": "16px"
+              },
+              "fontFamily": {
+                      "label-md": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "label-caps": [
+                              "Inter"
+                      ],
+                      "display": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "h2": [
+                              "Inter"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ],
+                      "h1": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "label-md": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-caps": [
+                              "11px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "display": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "h2": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "h1": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        body {
+            -webkit-tap-highlight-color: transparent;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background min-h-screen text-on-surface font-body-md text-body-md antialiased selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-none shadow-[0_4px_20px_rgba(0,0,0,0.04)] font-['Inter'] font-medium text-slate-900 dark:text-slate-100">
+<div class="flex items-center justify-between px-5 h-16 w-full max-w-7xl mx-auto">
+<!-- Leading Avatar -->
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-variant shrink-0 active:scale-95 duration-200">
+<img alt="User profile photo" class="w-full h-full object-cover" data-alt="close-up portrait of a young woman with warm natural lighting and soft blurred background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBW6h26ao__jAHcJUR0c1jaX48Tp1_909H8UTLWpYM8wSTC5qgJS5f0Ib_xvdfy29re7_JApPmGPuF7z5660MMEueRPSXweQIvaCz-NR3ngOX7ihB2z6e0mgzjtI-sPNLcPX6HU-f25vdwq_btxZAlgZNoui6jQiS-yFVRj1hdizh8sP9v01IWb7EfW927VZNzkLbbTFddEjEN7wEOxqACdEeNOZqMJwUSjsU_ELpm1pGcwFc7-1IA8VPUa__TM81jN4rcwzgYcIOrw"/>
+</div>
+<!-- Headline -->
+<h1 class="text-lg font-bold tracking-tight text-indigo-900 dark:text-indigo-100">Serenity Finance</h1>
+<!-- Trailing Icon -->
+<button class="w-8 h-8 flex items-center justify-center shrink-0 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors active:scale-95 duration-200 rounded-full">
+<span class="material-symbols-outlined text-indigo-900 dark:text-indigo-400">notifications</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-[88px] pb-[104px] px-margin-mobile max-w-7xl mx-auto">
+<!-- Total Balance Hero Card -->
+<section class="mb-xl">
+<div class="bg-primary rounded-[24px] p-lg text-on-primary shadow-[0_8px_32px_rgba(26,20,107,0.15)] relative overflow-hidden">
+<!-- Decorative ambient gradient -->
+<div class="absolute -top-24 -right-24 w-64 h-64 bg-primary-fixed opacity-20 rounded-full blur-3xl pointer-events-none"></div>
+<div class="relative z-10">
+<p class="font-label-caps text-label-caps text-primary-fixed-dim uppercase tracking-widest opacity-90 mb-xs">Total Balance</p>
+<h2 class="font-display text-display font-bold text-on-primary">$42,500.00</h2>
+<div class="flex flex-wrap gap-sm mt-lg">
+<button class="bg-primary-fixed text-on-primary-fixed px-md py-sm rounded-full font-label-md text-label-md flex items-center gap-xs hover:bg-white transition-colors active:scale-95">
+<span class="material-symbols-outlined text-[18px]">sync_alt</span>
+                            Transfer
+                        </button>
+<button class="bg-white/10 text-on-primary border border-white/20 px-md py-sm rounded-full font-label-md text-label-md flex items-center gap-xs hover:bg-white/20 backdrop-blur-sm transition-colors active:scale-95">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                            Add Account
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Accounts List -->
+<section>
+<h3 class="font-h2 text-h2 text-on-surface mb-md">My Accounts</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<!-- Checking Account Card -->
+<div class="bg-surface-container-lowest rounded-xl p-md shadow-[0_4px_20px_rgba(0,0,0,0.02)] flex items-center justify-between group hover:shadow-[0_8px_24px_rgba(0,0,0,0.04)] transition-shadow cursor-pointer">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-full bg-surface-container-low flex items-center justify-center text-primary group-hover:bg-primary-fixed group-hover:text-on-primary-fixed transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_balance</span>
+</div>
+<div>
+<p class="font-body-lg text-body-lg font-semibold text-on-surface">Checking</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Main Everyday</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-h2 text-h2 text-on-surface">$4,250.00</p>
+</div>
+</div>
+<!-- Savings Account Card -->
+<div class="bg-surface-container-lowest rounded-xl p-md shadow-[0_4px_20px_rgba(0,0,0,0.02)] flex items-center justify-between group hover:shadow-[0_8px_24px_rgba(0,0,0,0.04)] transition-shadow cursor-pointer">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-full bg-surface-container-low flex items-center justify-center text-secondary group-hover:bg-secondary-container group-hover:text-on-secondary-container transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">savings</span>
+</div>
+<div>
+<p class="font-body-lg text-body-lg font-semibold text-on-surface">Savings</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Emergency Fund</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-h2 text-h2 text-on-surface">$32,000.00</p>
+</div>
+</div>
+<!-- Credit Card Card -->
+<div class="bg-surface-container-lowest rounded-xl p-md shadow-[0_4px_20px_rgba(0,0,0,0.02)] flex items-center justify-between group hover:shadow-[0_8px_24px_rgba(0,0,0,0.04)] transition-shadow cursor-pointer">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-full bg-surface-container-low flex items-center justify-center text-tertiary-container group-hover:bg-error-container group-hover:text-on-error-container transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">credit_card</span>
+</div>
+<div>
+<p class="font-body-lg text-body-lg font-semibold text-on-surface">Credit Card</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Rewards Platinum</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-h2 text-h2 text-on-surface">-$1,250.00</p>
+</div>
+</div>
+<!-- Cash Card -->
+<div class="bg-surface-container-lowest rounded-xl p-md shadow-[0_4px_20px_rgba(0,0,0,0.02)] flex items-center justify-between group hover:shadow-[0_8px_24px_rgba(0,0,0,0.04)] transition-shadow cursor-pointer">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-full bg-surface-container-low flex items-center justify-center text-primary group-hover:bg-primary-fixed group-hover:text-on-primary-fixed transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">payments</span>
+</div>
+<div>
+<p class="font-body-lg text-body-lg font-semibold text-on-surface">Cash Stash</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Physical Currency</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-h2 text-h2 text-on-surface">$5,500.00</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full rounded-t-[24px] z-50 bg-white/90 dark:bg-slate-900/90 backdrop-blur-lg border-t border-slate-100 dark:border-slate-800 shadow-[0_-8px_24px_rgba(0,0,0,0.04)] font-['Inter'] text-[10px] uppercase tracking-widest md:hidden">
+<div class="flex justify-around items-center h-20 px-6 pb-safe w-full">
+<!-- Inactive Tab -->
+<a class="flex flex-col items-center text-slate-400 dark:text-slate-600 hover:text-indigo-500 dark:hover:text-indigo-300 transition-all active:scale-90 duration-300" href="#">
+<span class="material-symbols-outlined text-[24px]">home</span>
+</a>
+<!-- Active Tab: Accounts/Wallet -->
+<a class="flex flex-col items-center text-indigo-600 dark:text-indigo-400 after:content-[''] after:w-1 after:h-1 after:bg-indigo-600 after:rounded-full after:mt-1 hover:text-indigo-500 dark:hover:text-indigo-300 transition-all active:scale-90 duration-300" href="#">
+<span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
+</a>
+<!-- Inactive Tab -->
+<a class="flex flex-col items-center text-slate-400 dark:text-slate-600 hover:text-indigo-500 dark:hover:text-indigo-300 transition-all active:scale-90 duration-300" href="#">
+<span class="material-symbols-outlined text-[24px]">pie_chart</span>
+</a>
+<!-- Inactive Tab -->
+<a class="flex flex-col items-center text-slate-400 dark:text-slate-600 hover:text-indigo-500 dark:hover:text-indigo-300 transition-all active:scale-90 duration-300" href="#">
+<span class="material-symbols-outlined text-[24px]">assessment</span>
+</a>
+<!-- Inactive Tab -->
+<a class="flex flex-col items-center text-slate-400 dark:text-slate-600 hover:text-indigo-500 dark:hover:text-indigo-300 transition-all active:scale-90 duration-300" href="#">
+<span class="material-symbols-outlined text-[24px]">account_balance</span>
+</a>
+</div>
+</nav>
+</body></html>

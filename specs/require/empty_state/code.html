@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Serenity Finance - Transactions</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#f7f9fb",
+                        "on-primary-fixed": "#100563",
+                        "on-primary-container": "#9c9af4",
+                        "on-primary": "#ffffff",
+                        "on-surface-variant": "#474651",
+                        "surface-bright": "#f7f9fb",
+                        "primary": "#1a146b",
+                        "secondary-fixed-dim": "#68dba9",
+                        "surface-container-highest": "#e0e3e5",
+                        "surface-container-low": "#f2f4f6",
+                        "on-tertiary-fixed-variant": "#920028",
+                        "surface": "#f7f9fb",
+                        "on-error-container": "#93000a",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-tint": "#5654a8",
+                        "on-error": "#ffffff",
+                        "primary-container": "#312e81",
+                        "on-tertiary-container": "#ff7a85",
+                        "error-container": "#ffdad6",
+                        "tertiary-container": "#790020",
+                        "error": "#ba1a1a",
+                        "on-surface": "#191c1e",
+                        "surface-container": "#eceef0",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed-variant": "#3e3c8f",
+                        "tertiary": "#500012",
+                        "on-secondary-fixed-variant": "#005137",
+                        "outline-variant": "#c8c5d3",
+                        "primary-fixed-dim": "#c3c0ff",
+                        "tertiary-fixed-dim": "#ffb3b6",
+                        "inverse-primary": "#c3c0ff",
+                        "primary-fixed": "#e2dfff",
+                        "inverse-surface": "#2d3133",
+                        "secondary-container": "#82f5c1",
+                        "outline": "#777682",
+                        "surface-dim": "#d8dadc",
+                        "tertiary-fixed": "#ffdada",
+                        "on-secondary-container": "#00714e",
+                        "surface-variant": "#e0e3e5",
+                        "secondary-fixed": "#85f8c4",
+                        "secondary": "#006c4a",
+                        "surface-container-high": "#e6e8ea",
+                        "on-background": "#191c1e",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-secondary-fixed": "#002114",
+                        "on-tertiary-fixed": "#40000c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "8px",
+                        "xl": "32px",
+                        "base": "4px",
+                        "md": "16px",
+                        "xs": "4px",
+                        "lg": "24px",
+                        "margin-mobile": "20px",
+                        "gutter-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "display": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "h2": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "h1": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "display": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "h2": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "h1": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body-md antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 border-none shadow-[0_4px_20px_rgba(0,0,0,0.04)] bg-white/80 dark:bg-slate-900/80 backdrop-blur-md">
+<div class="flex items-center justify-between px-5 h-16 w-full max-w-7xl mx-auto">
+<div class="flex items-center gap-3">
+<img alt="User profile photo" class="w-8 h-8 rounded-full object-cover" data-alt="Portrait of a smiling professional woman, soft lighting, clean background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsBfvadwzox1NG0Z5lURFqqLXMnxXGUgENkQjSe8zRgUrO2uiq6KRXtlhemPfRC6vn44SjdIJ6rv_ZtBlTGwaOQHWWmbtgjjZLAeAWIWJCqlDDuc-cOjNeTBTfe8FskvuLGM1Dxc7bn01DkVuKkuIcpeNz6H2V7shFlmKK1Hu1sM6rekrMoIZ1cbjUImQtPVYkLXGxcPyGwpWZEHHdqa8RzLZFMM9K5a1Lj2FdiN_viXa9KaWy4CJ_5YVWPWHHtxAua829CVXsC0Zf"/>
+</div>
+<h1 class="text-lg font-bold tracking-tight text-indigo-900 dark:text-indigo-100">Serenity Finance</h1>
+<button class="text-indigo-900 dark:text-indigo-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors active:scale-95 duration-200 w-10 h-10 flex items-center justify-center rounded-full">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</div>
+</header>
+<!-- Main Canvas: Empty State -->
+<main class="flex flex-col items-center justify-center min-h-[884px] pt-16 pb-20 px-margin-mobile">
+<!-- Illustration Container -->
+<div class="relative w-64 h-64 mb-xl flex items-center justify-center">
+<!-- Subtle ambient glow behind illustration -->
+<div class="absolute inset-0 bg-primary-fixed-dim opacity-20 rounded-full blur-3xl"></div>
+<img alt="No transactions illustration" class="relative z-10 w-48 h-48 object-cover rounded-full shadow-[0_4px_40px_rgba(26,20,107,0.08)]" data-alt="Minimalist abstract 3D illustration of soft, floating geometric shapes in pale lavender and soft white tones, bright clean studio lighting, representing a serene empty space and financial clarity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAN6EcDfn15MARTGZL44bMuy4eJPcCizWx2ApIb_J5pyCBcN-ZSWpm5msD30gTm2rdgVLFGMHLTq2QXU7hQeoYlc-sg4xmZagDVLbQjTTt0k29z5PjiK33Ci7Y70h95sif-xgPdgmEqT9uQfbSj3OMsr1u3rJ8SID6v7NEp2tL5x8FEiNziK3X2gnrH0j98MsAzv7YOTeBUjJ4z1UjHDYXA9leRP3Bw0pn0nRGkljcJ5LMp-H3UHfEaoC7VKF3USXlj8egbYvyhtFF"/>
+</div>
+<!-- Typography -->
+<h2 class="font-h1 text-h1 text-on-surface mb-sm text-center">No Transactions Yet</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant text-center max-w-[300px] mb-xl">
+            Start your journey to financial serenity.
+        </p>
+<!-- Primary Action -->
+<button class="bg-primary text-on-primary font-body-md text-body-md font-medium px-xl py-md rounded-full hover:bg-primary-container hover:text-on-primary-container transition-colors active:scale-95 duration-200 flex items-center justify-center gap-sm shadow-[0_8px_24px_rgba(26,20,107,0.15)]">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add</span>
+            Add First Transaction
+        </button>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full rounded-t-[24px] z-50 border-t border-slate-100 dark:border-slate-800 shadow-[0_-8px_24px_rgba(0,0,0,0.04)] bg-white/90 dark:bg-slate-900/90 backdrop-blur-lg md:hidden">
+<div class="flex justify-around items-center h-20 px-6 pb-safe w-full">
+<button class="flex flex-col items-center text-slate-400 dark:text-slate-600 hover:text-indigo-500 dark:hover:text-indigo-300 transition-all active:scale-90 duration-300">
+<span class="material-symbols-outlined">home</span>
+</button>
+<button class="flex flex-col items-center text-indigo-600 dark:text-indigo-400 after:content-[''] after:w-1 after:h-1 after:bg-indigo-600 after:rounded-full after:mt-1 hover:text-indigo-500 dark:hover:text-indigo-300 transition-all active:scale-90 duration-300">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
+</button>
+<button class="flex flex-col items-center text-slate-400 dark:text-slate-600 hover:text-indigo-500 dark:hover:text-indigo-300 transition-all active:scale-90 duration-300">
+<span class="material-symbols-outlined">pie_chart</span>
+</button>
+<button class="flex flex-col items-center text-slate-400 dark:text-slate-600 hover:text-indigo-500 dark:hover:text-indigo-300 transition-all active:scale-90 duration-300">
+<span class="material-symbols-outlined">assessment</span>
+</button>
+<button class="flex flex-col items-center text-slate-400 dark:text-slate-600 hover:text-indigo-500 dark:hover:text-indigo-300 transition-all active:scale-90 duration-300">
+<span class="material-symbols-outlined">account_balance</span>
+</button>
+</div>
+</nav>
+</body></html>

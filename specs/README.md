@@ -9,6 +9,7 @@ This folder centralizes the product documentation for **Finance**, the mobile pe
 - [User flows](./user-flows.md)
 - [Design system](./design-system.md)
 - [Data model](./data-model.md)
+- [UI/UX requirement export](./require/README.md)
 
 ## Scope
 
@@ -23,4 +24,4 @@ This folder centralizes the product documentation for **Finance**, the mobile pe
 - Transfers move money between sources and do not count as expenses.
 - Reports and budgets are calculated from transaction data, not from manual summaries.
 - Light mode is the default visual direction, with clear dark mode support.
-
+- The stitched UI reference lives in `specs/require/` and is documented view by view.

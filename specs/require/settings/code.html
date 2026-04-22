@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Settings - Serenity Finance</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#f7f9fb",
+                        "on-primary-fixed": "#100563",
+                        "on-primary-container": "#9c9af4",
+                        "on-primary": "#ffffff",
+                        "on-surface-variant": "#474651",
+                        "surface-bright": "#f7f9fb",
+                        "primary": "#1a146b",
+                        "secondary-fixed-dim": "#68dba9",
+                        "surface-container-highest": "#e0e3e5",
+                        "surface-container-low": "#f2f4f6",
+                        "on-tertiary-fixed-variant": "#920028",
+                        "surface": "#f7f9fb",
+                        "on-error-container": "#93000a",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-tint": "#5654a8",
+                        "on-error": "#ffffff",
+                        "primary-container": "#312e81",
+                        "on-tertiary-container": "#ff7a85",
+                        "error-container": "#ffdad6",
+                        "tertiary-container": "#790020",
+                        "error": "#ba1a1a",
+                        "on-surface": "#191c1e",
+                        "surface-container": "#eceef0",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed-variant": "#3e3c8f",
+                        "tertiary": "#500012",
+                        "on-secondary-fixed-variant": "#005137",
+                        "outline-variant": "#c8c5d3",
+                        "primary-fixed-dim": "#c3c0ff",
+                        "tertiary-fixed-dim": "#ffb3b6",
+                        "inverse-primary": "#c3c0ff",
+                        "primary-fixed": "#e2dfff",
+                        "inverse-surface": "#2d3133",
+                        "secondary-container": "#82f5c1",
+                        "outline": "#777682",
+                        "surface-dim": "#d8dadc",
+                        "tertiary-fixed": "#ffdada",
+                        "on-secondary-container": "#00714e",
+                        "surface-variant": "#e0e3e5",
+                        "secondary-fixed": "#85f8c4",
+                        "secondary": "#006c4a",
+                        "surface-container-high": "#e6e8ea",
+                        "on-background": "#191c1e",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-secondary-fixed": "#002114",
+                        "on-tertiary-fixed": "#40000c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "8px",
+                        "xl": "32px",
+                        "base": "4px",
+                        "md": "16px",
+                        "xs": "4px",
+                        "lg": "24px",
+                        "margin-mobile": "20px",
+                        "gutter-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "display": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "h2": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "h1": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "display": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "h2": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "h1": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom toggle switch styling to avoid arbitrary classes where possible */
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: transparent;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: var(--tw-colors-primary);
+        }
+        .toggle-checkbox:checked + .toggle-label:after {
+            transform: translateX(100%);
+            border-color: white;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md min-h-screen antialiased selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-none shadow-[0_4px_20px_rgba(0,0,0,0.04)] flex items-center justify-between px-5 h-16 max-w-7xl mx-auto left-0 right-0">
+<div class="flex items-center justify-center w-10 h-10 rounded-full bg-surface-container overflow-hidden">
+<img alt="User profile photo" class="w-full h-full object-cover" data-alt="professional headshot of a young woman smiling warmly with soft studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVgb6WNe_8jWXYUtPViccKOnWR_TEBx4yAsm0xMJOX2krMtmfuCMx28Kw2yqn_JFa_0UC77QsMO1xcJjpZcf6zMrGFRwJoaKMePeADzwLb13P3ZayoqsYKUS4VrxMRIOTSZc__DAaphXOEhpyhIOxp6n5rfu8exzlMZJuPuZJ9sVLaGEoVUVq0YQo2A0DUADRphsURQFi77NsxZ_msA9BtHWU08yCSHXUKf7NdS7bgVrG8Df-ojOvhSllf8VJ6uvkk9VbAS8qFFVmc"/>
+</div>
+<h1 class="text-lg font-bold tracking-tight text-indigo-900 dark:text-indigo-100 font-display">Serenity Finance</h1>
+<button class="text-slate-400 dark:text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors active:scale-95 duration-200 w-10 h-10 rounded-full flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-primary-container">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-[88px] pb-xl px-margin-mobile max-w-3xl mx-auto space-y-xl">
+<!-- Page Title -->
+<div class="px-sm">
+<h2 class="font-display text-display text-on-surface">Settings</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-xs">Manage your financial serenity preferences.</p>
+</div>
+<!-- Account Profile Card (Bento Style) -->
+<section class="bg-surface-container-lowest rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.04)] p-md flex items-center justify-between">
+<div class="flex items-center gap-md">
+<div class="w-16 h-16 rounded-full overflow-hidden bg-surface-variant flex-shrink-0">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="professional headshot of a young woman smiling warmly with soft studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuApArcvo1Nfo2le1ltxJKsiuI39Kfe6QKoX9Gxl0uxG0qucbAn6jKa95oJi1btz8Z0J3QrRhxyMVnhxm__sJN8OvbAESLRi3oaoAWPDnGiXXiHBIp0GVavi3xyjB1f2u9BhIJNHfZNnn5uxZNsF3NbT4k2rOA6_pT_3rELe3g_AO5tdacxMrPC3uKVajiH1I3uZa3wVaz7OxWYrjzCwESDPDWzhLcEoJ-eYn1am9ZKRET3paRo5hGfKb-QZxsdB89NxJzR6eEB8iBn4"/>
+</div>
+<div>
+<h3 class="font-h2 text-h2 text-on-surface">Sarah Jenkins</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">sarah.jenkins@example.com</p>
+<span class="inline-block mt-xs bg-primary-fixed text-on-primary-fixed font-label-caps text-label-caps px-2 py-1 rounded-full uppercase">Premium Member</span>
+</div>
+</div>
+<button class="w-10 h-10 rounded-full hover:bg-surface-container-low transition-colors flex items-center justify-center text-outline">
+<span class="material-symbols-outlined">edit</span>
+</button>
+</section>
+<!-- Preferences Group -->
+<section class="space-y-sm">
+<h4 class="font-label-caps text-label-caps text-on-surface-variant uppercase px-md tracking-widest">Preferences</h4>
+<div class="bg-surface-container-lowest rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.04)] overflow-hidden flex flex-col">
+<!-- Currency -->
+<button class="flex items-center justify-between p-md w-full hover:bg-surface-container-low transition-colors group">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-lg bg-surface flex items-center justify-center text-primary">
+<span class="material-symbols-outlined icon-fill">payments</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface font-medium">Currency</span>
+</div>
+<div class="flex items-center gap-sm text-on-surface-variant">
+<span class="font-body-sm text-body-sm">USD ($)</span>
+<span class="material-symbols-outlined text-outline group-hover:text-on-surface transition-colors">chevron_right</span>
+</div>
+</button>
+<div class="h-px w-full bg-surface-container-highest ml-[68px]"></div>
+<!-- Language -->
+<button class="flex items-center justify-between p-md w-full hover:bg-surface-container-low transition-colors group">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-lg bg-surface flex items-center justify-center text-primary">
+<span class="material-symbols-outlined icon-fill">language</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface font-medium">Language</span>
+</div>
+<div class="flex items-center gap-sm text-on-surface-variant">
+<span class="font-body-sm text-body-sm">English</span>
+<span class="material-symbols-outlined text-outline group-hover:text-on-surface transition-colors">chevron_right</span>
+</div>
+</button>
+<div class="h-px w-full bg-surface-container-highest ml-[68px]"></div>
+<!-- Theme -->
+<button class="flex items-center justify-between p-md w-full hover:bg-surface-container-low transition-colors group">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-lg bg-surface flex items-center justify-center text-primary">
+<span class="material-symbols-outlined icon-fill">dark_mode</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface font-medium">Theme</span>
+</div>
+<div class="flex items-center gap-sm text-on-surface-variant">
+<span class="font-body-sm text-body-sm">System Default</span>
+<span class="material-symbols-outlined text-outline group-hover:text-on-surface transition-colors">chevron_right</span>
+</div>
+</button>
+</div>
+</section>
+<!-- Security Group -->
+<section class="space-y-sm">
+<h4 class="font-label-caps text-label-caps text-on-surface-variant uppercase px-md tracking-widest">Security</h4>
+<div class="bg-surface-container-lowest rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.04)] overflow-hidden flex flex-col">
+<!-- FaceID Toggle -->
+<div class="flex items-center justify-between p-md w-full hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-lg bg-surface flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined icon-fill">face</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface font-medium">FaceID Login</span>
+</div>
+<div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer transition-transform duration-200 ease-in-out border-surface-container-highest z-10" id="faceid-toggle" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-surface-container-highest cursor-pointer" for="faceid-toggle"></label>
+</div>
+</div>
+<div class="h-px w-full bg-surface-container-highest ml-[68px]"></div>
+<!-- Passcode -->
+<button class="flex items-center justify-between p-md w-full hover:bg-surface-container-low transition-colors group">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-lg bg-surface flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined icon-fill">pin</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface font-medium">Change Passcode</span>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-on-surface transition-colors">chevron_right</span>
+</button>
+</div>
+</section>
+<!-- Notifications & Data Group -->
+<section class="space-y-sm">
+<h4 class="font-label-caps text-label-caps text-on-surface-variant uppercase px-md tracking-widest">Notifications &amp; Data</h4>
+<div class="bg-surface-container-lowest rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.04)] overflow-hidden flex flex-col">
+<!-- Push Notifications Toggle -->
+<div class="flex items-center justify-between p-md w-full hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-lg bg-surface flex items-center justify-center text-primary">
+<span class="material-symbols-outlined icon-fill">notifications_active</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface font-medium">Push Notifications</span>
+</div>
+<div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer transition-transform duration-200 ease-in-out border-surface-container-highest z-10" id="push-toggle" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-surface-container-highest cursor-pointer" for="push-toggle"></label>
+</div>
+</div>
+<div class="h-px w-full bg-surface-container-highest ml-[68px]"></div>
+<!-- Export Data -->
+<button class="flex items-center justify-between p-md w-full hover:bg-surface-container-low transition-colors group">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-lg bg-surface flex items-center justify-center text-primary">
+<span class="material-symbols-outlined icon-fill">download</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface font-medium">Export Data</span>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-on-surface transition-colors">chevron_right</span>
+</button>
+<div class="h-px w-full bg-surface-container-highest ml-[68px]"></div>
+<!-- Backup -->
+<button class="flex items-center justify-between p-md w-full hover:bg-surface-container-low transition-colors group">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-lg bg-surface flex items-center justify-center text-primary">
+<span class="material-symbols-outlined icon-fill">cloud_sync</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface font-medium">Backup Preferences</span>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-on-surface transition-colors">chevron_right</span>
+</button>
+</div>
+</section>
+<!-- Help & Support Group -->
+<section class="space-y-sm">
+<h4 class="font-label-caps text-label-caps text-on-surface-variant uppercase px-md tracking-widest">Support</h4>
+<div class="bg-surface-container-lowest rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.04)] overflow-hidden flex flex-col">
+<button class="flex items-center justify-between p-md w-full hover:bg-surface-container-low transition-colors group">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-lg bg-surface flex items-center justify-center text-primary">
+<span class="material-symbols-outlined icon-fill">help_center</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface font-medium">Help &amp; Support</span>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-on-surface transition-colors">chevron_right</span>
+</button>
+</div>
+</section>
+<!-- Logout Action -->
+<section class="pt-sm">
+<button class="w-full bg-error-container text-on-error-container hover:bg-error hover:text-on-error transition-colors font-h2 text-h2 rounded-xl py-md px-lg text-center flex items-center justify-center gap-sm shadow-sm active:scale-[0.98]">
+<span class="material-symbols-outlined">logout</span>
+                Log Out
+            </button>
+<p class="text-center font-label-md text-label-md text-outline mt-lg">Version 2.4.1 (Build 492)</p>
+</section>
+</main>
+</body></html>
