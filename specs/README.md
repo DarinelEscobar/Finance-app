@@ -9,6 +9,7 @@ This folder centralizes the product documentation for **Finance**, the mobile pe
 - [User flows](./user-flows.md)
 - [Design system](./design-system.md)
 - [Data model](./data-model.md)
+- [Local storage strategy](./local-storage.md)
 - [UI/UX requirement export](./require/README.md)
 
 ## Scope
@@ -25,3 +26,4 @@ This folder centralizes the product documentation for **Finance**, the mobile pe
 - Reports and budgets are calculated from transaction data, not from manual summaries.
 - Light mode is the default visual direction, with clear dark mode support.
 - The stitched UI reference lives in `specs/require/` and is documented view by view.
+- The app is local-first on device for MVP; cloud sync is optional later.

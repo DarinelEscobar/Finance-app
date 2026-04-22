@@ -8,6 +8,24 @@ The app should use a simple but robust finance model:
 
 This keeps the app realistic for a personal finance tracker without turning it into a full accounting system.
 
+## Storage strategy
+
+All primary user data should be stored locally on the device for the MVP.
+
+Recommended implementation:
+
+- SQLite as the database engine
+- Drift as the Flutter data layer
+
+Why this fits the model:
+
+- the schema is relational
+- reports need joins and aggregations
+- budgets depend on date-range queries
+- transfers and split transactions are easier to validate in SQL
+
+Cloud sync is intentionally out of scope for the first version and should not be required to use the app.
+
 ## Core domain decision
 
 The UI can show **Accounts**, but the backend should store them as **payment_sources / wallets**.
@@ -327,4 +345,3 @@ Alerts and reminders.
 ## MVP boundary
 
 Do not introduce double-entry accounting in the first version. The app should remain simple enough for daily personal finance use.
-
