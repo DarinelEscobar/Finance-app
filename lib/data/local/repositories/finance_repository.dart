@@ -221,6 +221,28 @@ class FinanceRepository {
       ]);
     return query.get();
   }
+
+  Future<void> resetLocalData() async {
+    await database.transaction(() async {
+      await database.delete(database.transactionTags).go();
+      await database.delete(database.goalContributions).go();
+      await database.delete(database.transactionSplits).go();
+      await database.delete(database.transactions).go();
+      await database.delete(database.notifications).go();
+      await database.delete(database.billSubscriptions).go();
+      await database.delete(database.recurringRules).go();
+      await database.delete(database.budgets).go();
+      await database.delete(database.savingsGoals).go();
+      await database.delete(database.tags).go();
+      await database
+          .update(database.categories)
+          .write(const CategoriesCompanion(parentCategoryId: Value(null)));
+      await database.delete(database.categories).go();
+      await database.delete(database.paymentSources).go();
+      await database.delete(database.userSettings).go();
+      await database.delete(database.users).go();
+    });
+  }
 }
 
 String? _blankToNull(String? value) {

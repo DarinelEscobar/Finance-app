@@ -5,6 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:finance_app/app/finance_app.dart';
 import 'package:finance_app/data/local/database/app_database.dart';
 import 'package:finance_app/data/local/repositories/finance_repository.dart';
+import 'package:finance_app/domain/services/finance_types.dart';
 
 void main() {
   late AppDatabase database;
@@ -100,4 +101,41 @@ void main() {
     final categories = await repository.listActiveCategories(user.id);
     expect(categories, isNotEmpty);
   });
+
+  testWidgets(
+    'temporary dashboard reset clears local data and returns onboarding',
+    (WidgetTester tester) async {
+      final repository = FinanceRepository(database);
+      await repository.saveAccountSetup(
+        const AccountSetupDraft(
+          currencyCode: 'USD',
+          accountName: 'Main Checking',
+          sourceType: PaymentSourceType.checking,
+          openingBalanceMinor: 5000,
+        ),
+      );
+
+      await tester.pumpWidget(FinanceApp(database: database));
+      await tester.pumpAndSettle();
+
+      expect(find.text('Total balance'), findsOneWidget);
+      expect(await repository.isSetupComplete(), isTrue);
+
+      await tester.scrollUntilVisible(
+        find.text('Reset local data'),
+        300,
+        scrollable: find.byType(Scrollable).first,
+      );
+      await tester.tap(find.text('Reset local data'));
+      await tester.pumpAndSettle();
+
+      expect(find.text('Reset local data?'), findsOneWidget);
+      await tester.tap(find.text('Reset'));
+      await tester.pumpAndSettle();
+
+      expect(find.text('Master your money, effortlessly.'), findsOneWidget);
+      expect(await repository.hasLocalUser(), isFalse);
+      expect(await repository.isSetupComplete(), isFalse);
+    },
+  );
 }
