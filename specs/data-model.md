@@ -12,10 +12,12 @@ This keeps the app realistic for a personal finance tracker without turning it i
 
 All primary user data should be stored locally on the device for the MVP.
 
-Recommended implementation:
+Selected implementation:
 
 - SQLite as the database engine
 - Drift as the Flutter data layer
+
+This is the actual local persistence stack for the app.
 
 Why this fits the model:
 

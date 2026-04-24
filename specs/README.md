@@ -28,3 +28,4 @@ This folder centralizes the product documentation for **Finance**, the mobile pe
 - Light mode is the default visual direction, with clear dark mode support.
 - The stitched UI reference lives in `specs/require/` and is documented view by view.
 - The app is local-first on device for MVP; cloud sync is optional later.
+- The local database stack is SQLite + Drift.

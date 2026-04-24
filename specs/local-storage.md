@@ -2,7 +2,7 @@
 
 ## Decision
 
-Finance should run all user data locally on the device for the MVP.
+Finance will run all user data locally on the device for the MVP.
 
 That means:
 
@@ -12,13 +12,13 @@ That means:
 - accounts/payment sources stay on the phone
 - recurring rules, goals, bills, and notifications stay on the phone
 
-The app should not depend on a remote backend to be useful.
+The app will not depend on a remote backend to be useful.
 
-## Recommended database
+## Selected database
 
-**Recommended option: SQLite with a Flutter ORM layer such as Drift.**
+**Selected stack: SQLite with Drift.**
 
-Why this is the best default for this app:
+Why this is the chosen stack for this app:
 
 - the data is relational
 - budgets and reports need strong filtering and aggregation
@@ -86,4 +86,3 @@ flowchart LR
   APP --> EXP[Export / Backup]
   APP --> JOBS[Local jobs / reminders]
 ```
-
