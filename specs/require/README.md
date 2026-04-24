@@ -20,7 +20,7 @@ The exported design system summary is also preserved in `finance_modern_premium/
 | Dashboard | [screen.png](./dashboard/screen.png), [code.html](./dashboard/code.html) | Summary cards, insights, quick actions |
 | Transactions | [screen.png](./transactions/screen.png), [code.html](./transactions/code.html) | Search, filters, grouped list |
 | Add Transaction | [screen.png](./add_transaction/screen.png), [code.html](./add_transaction/code.html) | Fast entry, type toggle, save action |
-| Transaction Details | [screen.png](./transaction_details/screen.png), [code.html](./transaction_details/code.html) | Breakdown, receipt area, edit/delete |
+| Transaction Details | [screen.png](./transaction_details/screen.png), [code.html](./transaction_details/code.html) | Breakdown, edit/delete |
 | Categories | [screen.png](./categories/screen.png), [code.html](./categories/code.html) | Income/expense categories, custom colors |
 | Budgets | [screen.png](./budgets/screen.png), [code.html](./budgets/code.html) | Budget progress, warnings, CTA |
 | Reports | [screen.png](./reports/screen.png), [code.html](./reports/code.html) | Charts, time range, trends |
@@ -37,4 +37,3 @@ The exported design system summary is also preserved in `finance_modern_premium/
 - Use the screen PNGs as the visual source of truth for UI discussions.
 - Use the HTML files when you need structure, spacing, or component breakdowns.
 - Use this folder together with the product specs in the parent `specs/` directory.
-

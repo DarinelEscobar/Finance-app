@@ -9,14 +9,16 @@
 - Transfer between accounts
 - Income and expense categories
 - Custom categories with icon, color, and soft delete/archive
-- Monthly budgets by category with warnings and over-budget states
+- Monthly budgets by category by default, with simple preset ranges and custom date ranges
 - Reports with category charts and time range views
-- Accounts / payment sources for cash, cards, savings, wallets, and investments
+- Accounts / payment sources for cash, cards, savings, wallets, and investments with a simple provider label
 - Recurring transactions
 - Bills and subscriptions
 - Savings goals
 - Notifications and reminders
+- Export and import full app data as ZIP
 - Export to CSV or PDF
+- Reset local data to defaults
 - Settings and profile preferences
 
 ## Analysis and reporting
@@ -32,7 +34,6 @@
 - Notes
 - Tags
 - Split transactions
-- Receipt attachment placeholder
 - Smart insight cards
 - Empty states
 - Loading states
@@ -55,6 +56,8 @@
 - `savings_goals` and `goal_contributions`
 - `bill_subscriptions`
 - `notifications`
+- `payment_sources.provider_label` for simple account/provider naming
+- `budgets.period_type` for preset ranges or custom ranges
 
 ## Not stored as separate entities
 
@@ -63,6 +66,6 @@
 - Tabs for week / month / year / custom range
 - Insight cards
 - Search results
+- No receipt images in the MVP
 
 These are derived from the local database, not stored as independent records.
-

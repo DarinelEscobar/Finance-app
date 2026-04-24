@@ -16,7 +16,7 @@
 2. User selects `expense`.
 3. User enters amount first.
 4. User picks category and account.
-5. User adds note, tags, or receipt if needed.
+5. User adds note and tags if needed.
 6. User saves the transaction.
 7. Dashboard updates balances, budgets, and recent activity.
 
@@ -46,6 +46,7 @@
 3. User sets a budget amount and warning threshold.
 4. User saves.
 5. Budget progress appears on the overview and category detail screens.
+6. Supported periods stay simple: monthly default, weekly, 3 months, 6 months, 1 year, or custom date range.
 
 ## Flow 6. Transfer money between accounts
 
@@ -89,6 +90,14 @@
 4. User sees the confirmation state.
 5. Notifications and upcoming reminders update accordingly.
 
+## Flow 11. Export, import, or reset local data
+
+1. User opens Export / Data.
+2. User exports all local data as a ZIP archive when they want a portable backup.
+3. User shares or stores the ZIP file.
+4. User imports the same ZIP file later to restore the full app state.
+5. If the user chooses reset, the app clears all local data and returns to defaults.
+
 ## Shared interaction rules
 
 - Editing a transaction must preserve balance correctness by applying deltas.
@@ -96,4 +105,4 @@
 - Split transactions must total exactly the full amount.
 - Search and filter screens need a clear no-results state.
 - Budget warnings should surface before the limit is exceeded.
-
+- No receipt images in the MVP; transactions store structured expense data only.

@@ -13,6 +13,7 @@
 - Choose currency
 - Set starting balance
 - Create first account / payment source
+- Optional simple provider label for the company or brand, such as BBVA, Mercado Pago, GBM, or Cash
 - Optional monthly income estimate
 - Optional budgeting preference
 - Success state when setup is completed
@@ -52,7 +53,6 @@
 - Date and time
 - Note field
 - Tags
-- Receipt attachment placeholder
 - Recurring toggle
 - Split transaction option
 - Save button reachable with one hand
@@ -62,7 +62,6 @@
 - Full breakdown of the transaction
 - Category, account, amount, date, note, tags
 - Recurrence info
-- Attachment / receipt area
 - Actions: edit, duplicate, delete
 
 ## 7. Categories Screen
@@ -86,7 +85,7 @@
   - Other
 - Create custom category
 - Edit category
-- Archive or hide category
+- Soft delete or hide category
 - Differentiate income categories from expense categories
 
 ## 8. Create / Edit Category Screen
@@ -107,6 +106,7 @@
 - Over-budget states
 - Motivating visual summary
 - Clear CTA to edit budgets
+- Budget period selector with monthly default and simple preset ranges
 
 ## 10. Category Budget Detail Screen
 
@@ -116,6 +116,7 @@
 - Forecast / expected end-of-month state
 - Related transactions
 - Option to adjust budget
+- Budget period displayed clearly
 
 ## 11. Reports / Analytics Screen
 
@@ -141,6 +142,7 @@
   - digital wallet
 - Balance per account
 - Total across all accounts
+- Simple provider label like BBVA, Mercado Pago, or GBM
 - Quick transfer action
 - Quick add account action
 
@@ -149,6 +151,7 @@
 - Balance history
 - Transactions for that account
 - Account type
+- Simple provider label or institution tag
 - Edit account
 - Archive account
 
@@ -199,8 +202,11 @@
 ## 19. Export / Data Screen
 
 - Export to CSV or PDF
+- Export ZIP with all app data
+- Import ZIP backup
 - Select date range
 - Select accounts and categories
+- Reset local data to defaults
 - Confirmation state
 
 ## 20. Settings Screen
@@ -233,4 +239,3 @@ These states must be represented across the main screens:
 - Delete confirmation
 - Budget exceeded warning
 - No results search state
-

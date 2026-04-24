@@ -21,7 +21,7 @@ This document describes the stitched views that were imported into `specs/requir
 ## Account Setup
 
 - Purpose: collect the minimum setup data before the first use.
-- Primary UI: currency selection, starting balance, first account, optional monthly income, budgeting preference.
+- Primary UI: currency selection, starting balance, first account, optional provider label, optional monthly income, budgeting preference.
 - Notes: keep the form short and low-friction.
 - Assets: [screen.png](./account_setup/screen.png), [code.html](./account_setup/code.html)
 
@@ -42,14 +42,14 @@ This document describes the stitched views that were imported into `specs/requir
 ## Add Transaction
 
 - Purpose: make transaction entry extremely fast.
-- Primary UI: expense/income/transfer toggle, amount-first input, category and account selectors, date/time, note, tags, receipt placeholder, recurring toggle, split option.
+- Primary UI: expense/income/transfer toggle, amount-first input, category and account selectors, date/time, note, tags, recurring toggle, split option.
 - Notes: save action should be easy to reach with one hand.
 - Assets: [screen.png](./add_transaction/screen.png), [code.html](./add_transaction/code.html)
 
 ## Transaction Details
 
 - Purpose: expose the full record and all actions for a transaction.
-- Primary UI: amount, category, source account, date, note, tags, recurrence info, attachment area, edit/duplicate/delete actions.
+- Primary UI: amount, category, source account, date, note, tags, recurrence info, edit/duplicate/delete actions.
 - Notes: delete must be confirmed.
 - Assets: [screen.png](./transaction_details/screen.png), [code.html](./transaction_details/code.html)
 
@@ -78,7 +78,7 @@ This document describes the stitched views that were imported into `specs/requir
 
 - Purpose: present all payment sources in one place.
 - Primary UI: account cards, individual balances, total balance, transfer action, add account action.
-- Notes: the UI can say accounts while the backend uses payment sources.
+- Notes: the UI can say accounts while the backend uses payment sources; cards, cash, savings, wallets, and investments use the same balance logic.
 - Assets: [screen.png](./accounts/screen.png), [code.html](./accounts/code.html)
 
 ## Transfer
@@ -122,4 +122,3 @@ This document describes the stitched views that were imported into `specs/requir
 - Primary UI: empty-state illustration/message, next-step CTA, helpful hint.
 - Notes: should be used by transactions, budgets, reports, and onboarding-adjacent flows.
 - Assets: [screen.png](./empty_state/screen.png), [code.html](./empty_state/code.html)
-

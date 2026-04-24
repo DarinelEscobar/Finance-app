@@ -28,6 +28,12 @@ Why this fits the model:
 
 Cloud sync is intentionally out of scope for the first version and should not be required to use the app.
 
+Backup and restore are local file operations:
+
+- export all app data to a ZIP archive
+- import from the same ZIP archive to restore the app state
+- reset local data is a separate destructive action that clears the phone and returns the app to defaults
+
 ## Core domain decision
 
 The UI can show **Accounts**, but the backend should store them as **payment_sources / wallets**.
@@ -130,6 +136,7 @@ Stores cash, bank, wallet, savings, and investment sources.
 - `id`
 - `user_id`
 - `name`
+- `provider_label` nullable
 - `type`
 - `currency_code`
 - `opening_balance`
@@ -140,6 +147,10 @@ Stores cash, bank, wallet, savings, and investment sources.
 - `display_order`
 - `created_at`
 - `updated_at`
+
+Rule:
+
+- all payment sources use the same balance behavior; the provider label is only metadata for display and grouping.
 
 ### categories
 
@@ -161,6 +172,7 @@ Income and expense categories.
 Rule:
 
 - archived or soft-deleted categories should remain reference-safe for historical transactions.
+- category deletion is soft delete only; historical references must stay valid.
 
 ### transactions
 
@@ -232,7 +244,9 @@ Category budgets by period.
 
 MVP recommendation:
 
-- monthly budgets first
+- monthly budgets by default.
+- supported budget periods should stay simple: monthly, weekly, 3 months, 6 months, 1 year, or custom date range.
+- avoid arbitrary day-based scheduling if it adds complexity without clear value.
 
 ### recurring_rules
 

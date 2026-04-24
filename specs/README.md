@@ -29,3 +29,5 @@ This folder centralizes the product documentation for **Finance**, the mobile pe
 - The stitched UI reference lives in `specs/require/` and is documented view by view.
 - The app is local-first on device for MVP; cloud sync is optional later.
 - The local database stack is SQLite + Drift.
+- Export/import uses a full ZIP backup of local data.
+- No receipt images in the MVP.

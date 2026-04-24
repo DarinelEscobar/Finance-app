@@ -64,6 +64,13 @@ Cloud sync is out of scope for the MVP.
 
 If added later, it should be treated as an optional layer on top of the local database rather than the source of truth.
 
+## Backup, export, and restore
+
+- Export must package all app data into a ZIP file that can be shared.
+- Import must accept the exported ZIP and restore the full local state correctly.
+- Reset local data is a separate destructive action that deletes all local data and reinitializes defaults.
+- Export/import should include the full SQLite data plus any metadata needed to restore settings, accounts, categories, budgets, goals, recurring rules, bills, and notifications.
+
 ## Performance notes
 
 For phone performance, the storage layer should support:
