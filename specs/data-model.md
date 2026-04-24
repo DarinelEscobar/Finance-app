@@ -38,6 +38,26 @@ That gives enough flexibility for:
 - savings accounts
 - investment sources
 
+## Feature coverage
+
+The current model already covers the main features requested in the prompt:
+
+- category-based analysis by month or custom range, derived from transactions
+- budgets by category with warning thresholds and alerts
+- accounts such as cash, cards, savings, and wallets
+- transfers between accounts
+- income and expense category types
+- custom categories with icon and color
+- category archive / soft delete
+- recurring transactions
+- bills and subscriptions
+- savings goals
+- notifications and reminders
+- notes, tags, and split transactions
+- export and reporting from local data
+
+Charts and filters are UI/reporting views on top of the same transaction data; they are not stored as separate core entities.
+
 ## ERD
 
 ```mermaid
@@ -131,9 +151,14 @@ Income and expense categories.
 - `color`
 - `is_system`
 - `is_archived`
+- `deleted_at` nullable
 - `parent_category_id` nullable
 - `created_at`
 - `updated_at`
+
+Rule:
+
+- archived or soft-deleted categories should remain reference-safe for historical transactions.
 
 ### transactions
 

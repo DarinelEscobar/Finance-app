@@ -9,6 +9,7 @@ This folder centralizes the product documentation for **Finance**, the mobile pe
 - [User flows](./user-flows.md)
 - [Design system](./design-system.md)
 - [Data model](./data-model.md)
+- [Features](./features.md)
 - [Local storage strategy](./local-storage.md)
 - [UI/UX requirement export](./require/README.md)
 
