@@ -18,15 +18,20 @@ class _AccountSetupScreenState extends State<AccountSetupScreen> {
   final _formKey = GlobalKey<FormState>();
   final _accountNameController = TextEditingController();
   final _openingBalanceController = TextEditingController();
+  final _providerLabelController = TextEditingController();
+  final _monthlyIncomeController = TextEditingController();
 
   String _currencyCode = 'USD';
   PaymentSourceType _sourceType = PaymentSourceType.checking;
+  String _budgetMode = 'monthly';
   bool _isSaving = false;
 
   @override
   void dispose() {
     _accountNameController.dispose();
     _openingBalanceController.dispose();
+    _providerLabelController.dispose();
+    _monthlyIncomeController.dispose();
     super.dispose();
   }
 
@@ -48,6 +53,12 @@ class _AccountSetupScreenState extends State<AccountSetupScreen> {
                 ? '0'
                 : _openingBalanceController.text,
           ),
+          providerLabel: _providerLabelController.text,
+          monthlyIncomeEstimateMinor:
+              _monthlyIncomeController.text.trim().isEmpty
+              ? null
+              : parseMoneyToMinorUnits(_monthlyIncomeController.text),
+          budgetMode: _budgetMode,
         ),
       );
 
@@ -188,6 +199,54 @@ class _AccountSetupScreenState extends State<AccountSetupScreen> {
                             enabled: !_isSaving,
                             onChanged: (type) {
                               setState(() => _sourceType = type);
+                            },
+                          ),
+                        ),
+                        const SizedBox(height: 32),
+                        Text(
+                          'Setup Details',
+                          style: textTheme.titleMedium?.copyWith(
+                            color: FinanceColors.text,
+                            fontWeight: FontWeight.w800,
+                          ),
+                        ),
+                        const SizedBox(height: 16),
+                        _LabeledField(
+                          label: 'Provider Label',
+                          child: TextFormField(
+                            controller: _providerLabelController,
+                            textInputAction: TextInputAction.next,
+                            decoration: const InputDecoration(
+                              hintText: 'BBVA, Mercado Pago, Cash',
+                              suffixIcon: Icon(Icons.account_balance_rounded),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 24),
+                        _LabeledField(
+                          label: 'Monthly Income Estimate',
+                          child: TextFormField(
+                            controller: _monthlyIncomeController,
+                            keyboardType:
+                                const TextInputType.numberWithOptions(
+                                  decimal: true,
+                                ),
+                            textInputAction: TextInputAction.done,
+                            decoration: const InputDecoration(
+                              prefixText: r'$ ',
+                              hintText: 'Optional',
+                            ),
+                            validator: validateOptionalMoney,
+                          ),
+                        ),
+                        const SizedBox(height: 24),
+                        _LabeledField(
+                          label: 'Budget Preference',
+                          child: _BudgetModeSelector(
+                            value: _budgetMode,
+                            enabled: !_isSaving,
+                            onChanged: (value) {
+                              setState(() => _budgetMode = value);
                             },
                           ),
                         ),
