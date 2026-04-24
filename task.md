@@ -39,7 +39,7 @@ La carpeta `specs/` es la fuente de verdad del MVP. Toda implementacion debe cum
 - **Branch:** `task/002-onboarding`
 - **Expected commit:** `002: onboarding`
 - **Priority/order:** 2
-- **Status:** `Pending`
+- **Status:** `Ready for validation`
 - **Required specs:**
   - `specs/product-overview.md`
   - `specs/screen-inventory.md`
