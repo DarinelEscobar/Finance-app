@@ -1,0 +1,725 @@
+# MVP Task Plan
+
+## Source of Truth
+
+La carpeta `specs/` es la fuente de verdad del MVP. Toda implementacion debe cumplir los documentos de producto, modelo de datos, almacenamiento local, flujos, pantallas, diseno y referencias visuales dentro de `specs/`. Si hay conflicto entre una decision tecnica y `specs/`, se debe ajustar la implementacion o documentar la excepcion antes de cerrar la tarea.
+
+## Working Rules
+
+- Mantener toda la aplicacion local-first: datos en el telefono, sin API externa, backend remoto, Firebase, Supabase ni base de datos externa.
+- Usar SQLite + Drift como persistencia local, segun `specs/local-storage.md`.
+- Crear cada rama desde el commit final de la tarea anterior.
+- Usar ramas cronologicas: `task/001-local-data-foundation`, `task/002-onboarding`, etc.
+- Usar commits cronologicos con prefijo de tarea: `001: local data foundation`, `002: onboarding`, etc.
+- Implementar solo el alcance de la tarea activa.
+- No mover una tarea a `completed-task.md` hasta que este funcional, validada y corroborada contra `specs/`.
+- Al completar una tarea, mover el bloque completo desde este archivo hacia `completed-task.md` y registrar branch, commit hash, fecha, validaciones ejecutadas y specs verificados.
+- No revertir cambios existentes no relacionados.
+
+## Required Validation Before Completing Any Task
+
+- Revisar los specs obligatorios declarados en la tarea.
+- Ejecutar `flutter analyze`.
+- Ejecutar `flutter test`.
+- Ejecutar build o prueba manual cuando aplique.
+- Confirmar que no se agrego dependencia runtime a API externa o base remota.
+- Confirmar que loading, empty, error, success y confirmation states existen cuando apliquen.
+
+## Allowed Status Values
+
+- `Pending`
+- `In Progress`
+- `Blocked`
+- `Ready for validation`
+
+---
+
+## 001 - Local Data Foundation
+
+- **ID:** `001`
+- **Name:** Local Data Foundation
+- **Branch:** `task/001-local-data-foundation`
+- **Expected commit:** `001: local data foundation`
+- **Priority/order:** 1
+- **Status:** `Pending`
+- **Required specs:**
+  - `specs/data-model.md`
+  - `specs/local-storage.md`
+  - `specs/features.md`
+  - `specs/user-flows.md`
+- **Objective:** Crear la base local de datos, modelos, repositorios y reglas de negocio que soportan todo el MVP sin depender de servicios externos.
+- **Included scope:**
+  - Agregar dependencias necesarias para SQLite + Drift y generacion de codigo.
+  - Crear estructura base por capas para `app`, `core`, `data/local`, `domain`, `features` y `shared`.
+  - Implementar `AppDatabase` con migraciones iniciales.
+  - Crear tablas para users, user_settings, payment_sources, categories, transactions, transaction_splits, tags, transaction_tags, budgets, recurring_rules, savings_goals, goal_contributions, bill_subscriptions y notifications.
+  - Crear enums/tipos de dominio para transaction type, category type, source type, status, budget period, recurring frequency y theme preference.
+  - Crear seeds locales para usuario invitado, settings default, payment source inicial opcional y categorias default.
+  - Crear repositorios o DAOs locales para lectura/escritura principal.
+  - Implementar reglas base de balance para income, expense y transfer.
+  - Implementar soft delete para transactions y categories donde aplique.
+  - Preparar servicios base: transaction, balance, budget, reporting, recurring, backup/settings placeholders.
+- **Out of scope:**
+  - UI final de pantallas.
+  - Charts finales.
+  - Export/import ZIP completo.
+  - Notificaciones del sistema operativo.
+- **Required implementation:**
+  - Todas las operaciones financieras criticas deben usar transacciones de base de datos.
+  - Expense disminuye balance de la cuenta origen.
+  - Income aumenta balance de la cuenta origen.
+  - Transfer mueve balance entre origen y destino y no cuenta como gasto.
+  - Delete de transaction usa soft delete y revierte impacto de balance.
+  - Splits deben permitir validar que la suma coincide con el total.
+  - Queries deben soportar rangos por fecha, categoria, payment source y tipo.
+- **Acceptance criteria:**
+  - El modelo implementado cubre las entidades y reglas de `specs/data-model.md`.
+  - La persistencia es SQLite + Drift y funciona localmente en el dispositivo.
+  - No existe dependencia runtime obligatoria a API externa, backend remoto ni database externa.
+  - Balance queda correcto al crear, editar y soft-delete income, expense y transfer.
+  - Categorias historicas siguen siendo reference-safe aunque se archiven o eliminen logicamente.
+  - Tests cubren reglas principales de balance y validaciones basicas.
+- **Required validation:**
+  - `dart run build_runner build --delete-conflicting-outputs`
+  - `flutter analyze`
+  - `flutter test`
+  - Prueba manual: inicializar app/database en limpio y verificar seeds locales.
+
+---
+
+## 002 - Onboarding / Welcome
+
+- **ID:** `002`
+- **Name:** Onboarding / Welcome
+- **Branch:** `task/002-onboarding`
+- **Expected commit:** `002: onboarding`
+- **Priority/order:** 2
+- **Status:** `Pending`
+- **Required specs:**
+  - `specs/product-overview.md`
+  - `specs/screen-inventory.md`
+  - `specs/user-flows.md`
+  - `specs/design-system.md`
+  - `specs/require/onboarding/screen.png`
+  - `specs/require/onboarding/code.html`
+- **Objective:** Implementar la primera experiencia de usuario con bienvenida, propuesta de valor y entrada rapida local/invitado.
+- **Included scope:**
+  - Crear ruta inicial que decide entre onboarding, account setup o dashboard segun estado local.
+  - Implementar pantalla de bienvenida mobile-first.
+  - Agregar CTA principal para empezar.
+  - Agregar accion de continuar como invitado local.
+  - Guardar localmente que el onboarding fue visto cuando corresponda.
+  - Respetar visual direction premium fintech del design system.
+- **Out of scope:**
+  - Login remoto.
+  - Sincronizacion cloud.
+  - Account setup completo.
+- **Required implementation:**
+  - La pantalla debe usar componentes reutilizables cuando convenga.
+  - La navegacion debe llevar a account setup si no hay configuracion inicial.
+  - Si ya existe setup completado, debe saltar al dashboard.
+- **Acceptance criteria:**
+  - Cumple view 1 de `specs/screen-inventory.md`.
+  - Cumple flow 1 de `specs/user-flows.md`.
+  - La UI coincide razonablemente con `specs/require/onboarding`.
+  - No se solicita cuenta remota para usar el MVP.
+  - Existe estado accesible para empezar el flujo con pocos taps.
+- **Required validation:**
+  - `flutter analyze`
+  - `flutter test`
+  - Prueba manual: instalacion limpia muestra onboarding; continuar lleva a account setup.
+
+---
+
+## 003 - Account Setup
+
+- **ID:** `003`
+- **Name:** Account Setup
+- **Branch:** `task/003-account-setup`
+- **Expected commit:** `003: account setup`
+- **Priority/order:** 3
+- **Status:** `Pending`
+- **Required specs:**
+  - `specs/data-model.md`
+  - `specs/local-storage.md`
+  - `specs/screen-inventory.md`
+  - `specs/user-flows.md`
+  - `specs/require/account_setup/screen.png`
+  - `specs/require/account_setup/code.html`
+- **Objective:** Capturar los datos minimos para que el usuario pueda usar la app localmente: moneda, primera cuenta/payment source y balance inicial.
+- **Included scope:**
+  - Selector de moneda.
+  - Nombre de primera cuenta/payment source.
+  - Tipo de cuenta/source.
+  - Provider label opcional.
+  - Balance inicial.
+  - Ingreso mensual estimado opcional.
+  - Preferencia de presupuesto opcional.
+  - Estado de exito al terminar.
+  - Creacion local de usuario invitado, settings, primera cuenta y categorias default.
+- **Out of scope:**
+  - Multiples cuentas avanzadas.
+  - Login remoto.
+  - Importacion de backup.
+- **Required implementation:**
+  - Validar campos requeridos antes de guardar.
+  - Persistir setup completo en SQLite.
+  - Inicializar defaults idempotentemente.
+  - Redirigir al dashboard al terminar.
+- **Acceptance criteria:**
+  - Cumple view 2 de `specs/screen-inventory.md`.
+  - Cumple flow 1 de `specs/user-flows.md`.
+  - La UI coincide razonablemente con `specs/require/account_setup`.
+  - El dashboard puede leer los datos iniciales despues de completar setup.
+  - El usuario puede usar la app sin internet.
+- **Required validation:**
+  - `flutter analyze`
+  - `flutter test`
+  - Prueba manual: completar setup, cerrar/reabrir app y conservar datos locales.
+
+---
+
+## 004 - Categories
+
+- **ID:** `004`
+- **Name:** Categories
+- **Branch:** `task/004-categories`
+- **Expected commit:** `004: categories`
+- **Priority/order:** 4
+- **Status:** `Pending`
+- **Required specs:**
+  - `specs/data-model.md`
+  - `specs/features.md`
+  - `specs/screen-inventory.md`
+  - `specs/user-flows.md`
+  - `specs/require/categories/screen.png`
+  - `specs/require/categories/code.html`
+- **Objective:** Implementar administracion local de categorias income/expense, incluyendo categorias custom y soft delete/archive.
+- **Included scope:**
+  - Listar categorias de ingreso y gasto separadas visualmente.
+  - Mostrar icono, color, tipo, estado y resumen de presupuesto/gasto cuando exista.
+  - Crear categoria custom.
+  - Editar nombre, icono, color y tipo cuando sea seguro.
+  - Asignar presupuesto opcional si el flujo lo requiere.
+  - Archivar o soft-delete categoria.
+  - Mantener categorias historicas reference-safe.
+- **Out of scope:**
+  - Charts detallados.
+  - Pantalla completa de budgets.
+  - Eliminacion fisica de categorias con historico.
+- **Required implementation:**
+  - Default categories deben incluir las categorias listadas en `screen-inventory.md`.
+  - Categoria expense solo debe usarse para expense.
+  - Categoria income solo debe usarse para income.
+  - Soft delete debe ocultar de selectores nuevos sin romper transacciones existentes.
+- **Acceptance criteria:**
+  - Cumple views 7 y 8 de `specs/screen-inventory.md`.
+  - Cumple flow 4 de `specs/user-flows.md`.
+  - La UI coincide razonablemente con `specs/require/categories`.
+  - Nueva categoria aparece en Add Transaction.
+  - Categoria archivada no aparece para nuevas transacciones, pero sigue visible en historico.
+- **Required validation:**
+  - `flutter analyze`
+  - `flutter test`
+  - Prueba manual: crear, editar, archivar y usar categoria.
+
+---
+
+## 005 - Add Transaction
+
+- **ID:** `005`
+- **Name:** Add Transaction
+- **Branch:** `task/005-add-transaction`
+- **Expected commit:** `005: add transaction`
+- **Priority/order:** 5
+- **Status:** `Pending`
+- **Required specs:**
+  - `specs/data-model.md`
+  - `specs/features.md`
+  - `specs/screen-inventory.md`
+  - `specs/user-flows.md`
+  - `specs/require/add_transaction/screen.png`
+  - `specs/require/add_transaction/code.html`
+- **Objective:** Implementar captura rapida de expense, income y transfer con actualizacion correcta de balances locales.
+- **Included scope:**
+  - Toggle expense/income/transfer.
+  - Amount como campo principal.
+  - Selector de categoria cuando aplique.
+  - Selector de cuenta origen.
+  - Selector de cuenta destino para transfer.
+  - Fecha y hora.
+  - Nota.
+  - Tags basicos.
+  - Recurring toggle como entrada a regla local o placeholder conectado al modelo.
+  - Split transaction option con validacion basica o flujo minimo.
+  - Save button accesible con una mano.
+- **Out of scope:**
+  - OCR de recibos.
+  - Bank sync.
+  - Recurring avanzado completo si queda para tarea 011.
+- **Required implementation:**
+  - Expense requiere categoria expense y cuenta origen.
+  - Income requiere categoria income y cuenta origen.
+  - Transfer requiere origen, destino distinto y amount valido.
+  - Guardar debe ejecutarse en transaccion local.
+  - Errores de validacion deben mostrarse sin perder el formulario.
+- **Acceptance criteria:**
+  - Cumple view 5 de `specs/screen-inventory.md`.
+  - Cumple flows 2 y 3 de `specs/user-flows.md`.
+  - La UI coincide razonablemente con `specs/require/add_transaction`.
+  - Dashboard, accounts y transaction list reflejan la transaccion guardada.
+  - Transfer no aparece como expense en analytics.
+- **Required validation:**
+  - `flutter analyze`
+  - `flutter test`
+  - Prueba manual: agregar gasto, ingreso y transferencia; verificar balances.
+
+---
+
+## 006 - Dashboard
+
+- **ID:** `006`
+- **Name:** Dashboard
+- **Branch:** `task/006-dashboard`
+- **Expected commit:** `006: dashboard`
+- **Priority/order:** 6
+- **Status:** `Pending`
+- **Required specs:**
+  - `specs/features.md`
+  - `specs/screen-inventory.md`
+  - `specs/user-flows.md`
+  - `specs/design-system.md`
+  - `specs/require/dashboard/screen.png`
+  - `specs/require/dashboard/code.html`
+  - `specs/require/empty_state/screen.png`
+  - `specs/require/empty_state/code.html`
+- **Objective:** Reemplazar el dashboard estatico por una vista principal calculada desde SQLite.
+- **Included scope:**
+  - Total balance.
+  - Income this month.
+  - Expenses this month.
+  - Savings this month.
+  - Budget status.
+  - Spending by category preview.
+  - Recent transactions.
+  - Smart insight cards basicas.
+  - Quick actions.
+  - Weekly/monthly toggle.
+  - Cash flow mini chart simple.
+  - FAB para nueva transaccion.
+  - Loading, empty y error states.
+- **Out of scope:**
+  - Reportes avanzados completos.
+  - Budget detail completo.
+  - Profile avanzado.
+- **Required implementation:**
+  - Los datos deben venir de repositorios/servicios locales, no de listas hardcodeadas.
+  - Transfer debe excluirse de expense analytics.
+  - Deleted y void transactions deben excluirse de resumenes.
+  - La vista debe refrescar al volver de Add Transaction.
+- **Acceptance criteria:**
+  - Cumple view 3 de `specs/screen-inventory.md`.
+  - La UI coincide razonablemente con `specs/require/dashboard`.
+  - App muestra empty state util cuando no hay transacciones.
+  - Al agregar income/expense se actualizan tarjetas y recientes.
+  - Mantiene bottom navigation y FAB esperados.
+- **Required validation:**
+  - `flutter analyze`
+  - `flutter test`
+  - Prueba manual: dashboard vacio, dashboard con datos, error/loading cuando aplique.
+
+---
+
+## 007 - Transactions + Details
+
+- **ID:** `007`
+- **Name:** Transactions + Details
+- **Branch:** `task/007-transactions-details`
+- **Expected commit:** `007: transactions details`
+- **Priority/order:** 7
+- **Status:** `Pending`
+- **Required specs:**
+  - `specs/data-model.md`
+  - `specs/features.md`
+  - `specs/screen-inventory.md`
+  - `specs/user-flows.md`
+  - `specs/require/transactions/screen.png`
+  - `specs/require/transactions/code.html`
+  - `specs/require/transaction_details/screen.png`
+  - `specs/require/transaction_details/code.html`
+  - `specs/require/empty_state/screen.png`
+- **Objective:** Implementar ledger completo local con detalle y acciones principales sobre transacciones.
+- **Included scope:**
+  - Lista completa de transacciones.
+  - Search bar.
+  - Filtros por fecha, cuenta, categoria, tipo y tags.
+  - Sort options.
+  - Agrupacion por dia, semana o mes.
+  - Distincion visual income/expense.
+  - Empty y no-results states.
+  - Pantalla de detalle con monto, categoria, cuenta, fecha, nota, tags y recurrence info.
+  - Acciones edit, duplicate y delete.
+  - Confirmacion antes de delete.
+- **Out of scope:**
+  - Export de transacciones.
+  - Reportes graficos avanzados.
+- **Required implementation:**
+  - Delete debe ser soft delete y revertir balance.
+  - Edit debe aplicar delta logic y usar transaccion de DB.
+  - Duplicate debe crear nueva transaction editable o guardada segun patron elegido.
+  - Los filtros no deben mutar datos.
+- **Acceptance criteria:**
+  - Cumple views 4 y 6 de `specs/screen-inventory.md`.
+  - Cumple shared interaction rules de `specs/user-flows.md`.
+  - La UI coincide razonablemente con `specs/require/transactions` y `transaction_details`.
+  - Busqueda sin resultados muestra no-results state.
+  - Eliminar requiere confirmacion y mantiene historico seguro.
+- **Required validation:**
+  - `flutter analyze`
+  - `flutter test`
+  - Prueba manual: buscar, filtrar, editar, duplicar y eliminar.
+
+---
+
+## 008 - Accounts + Transfers
+
+- **ID:** `008`
+- **Name:** Accounts + Transfers
+- **Branch:** `task/008-accounts-transfers`
+- **Expected commit:** `008: accounts transfers`
+- **Priority/order:** 8
+- **Status:** `Pending`
+- **Required specs:**
+  - `specs/data-model.md`
+  - `specs/features.md`
+  - `specs/screen-inventory.md`
+  - `specs/user-flows.md`
+  - `specs/require/accounts/screen.png`
+  - `specs/require/accounts/code.html`
+  - `specs/require/transfer/screen.png`
+  - `specs/require/transfer/code.html`
+- **Objective:** Implementar gestion de accounts en UI usando `payment_sources` internamente y transferencias entre cuentas.
+- **Included scope:**
+  - Accounts overview con tarjetas.
+  - Balance por cuenta.
+  - Total across all accounts.
+  - Provider label.
+  - Add account.
+  - Edit account.
+  - Archive account.
+  - Account detail basico con transacciones.
+  - Transfer between accounts.
+  - Confirmacion de transferencia.
+- **Out of scope:**
+  - Bank sync.
+  - Debt amortization.
+  - Investment performance tracking.
+- **Required implementation:**
+  - Todas las cuentas usan `payment_sources`.
+  - `include_in_total_balance` controla el total.
+  - Transfer debe crear transaction tipo transfer.
+  - Origen y destino deben ser distintos.
+  - Transfer debe actualizar ambos balances atomically.
+- **Acceptance criteria:**
+  - Cumple views 12, 13 y 14 de `specs/screen-inventory.md`.
+  - Cumple flow 6 de `specs/user-flows.md`.
+  - La UI coincide razonablemente con `specs/require/accounts` y `transfer`.
+  - Transfer no afecta expense reports ni budgets.
+  - Cuenta archivada no aparece como opcion principal para nuevas transacciones.
+- **Required validation:**
+  - `flutter analyze`
+  - `flutter test`
+  - Prueba manual: crear cuenta, transferir, archivar y revisar balances.
+
+---
+
+## 009 - Budgets
+
+- **ID:** `009`
+- **Name:** Budgets
+- **Branch:** `task/009-budgets`
+- **Expected commit:** `009: budgets`
+- **Priority/order:** 9
+- **Status:** `Pending`
+- **Required specs:**
+  - `specs/data-model.md`
+  - `specs/features.md`
+  - `specs/screen-inventory.md`
+  - `specs/user-flows.md`
+  - `specs/require/budgets/screen.png`
+  - `specs/require/budgets/code.html`
+- **Objective:** Implementar presupuestos locales por categoria con periodos simples y alertas visuales.
+- **Included scope:**
+  - Budgets overview.
+  - Total monthly budget.
+  - Remaining budget.
+  - Progress by category.
+  - Warning near limit.
+  - Over-budget state.
+  - CTA para editar budgets.
+  - Budget period selector: monthly, weekly, 3 months, 6 months, 1 year, custom.
+  - Category budget detail.
+  - Related transactions.
+- **Out of scope:**
+  - Presupuestos arbitrarios complejos fuera de specs.
+  - Sync o reglas compartidas multiusuario.
+- **Required implementation:**
+  - Usage se deriva de posted transactions en rango.
+  - Incluir split transactions por linea.
+  - Excluir transfers.
+  - Excluir deleted o void items.
+  - Alert threshold controla warning state.
+- **Acceptance criteria:**
+  - Cumple views 9 y 10 de `specs/screen-inventory.md`.
+  - Cumple flow 5 de `specs/user-flows.md`.
+  - La UI coincide razonablemente con `specs/require/budgets`.
+  - Cambios en transacciones actualizan budget usage.
+  - Se muestran estados near-limit y over-budget.
+- **Required validation:**
+  - `flutter analyze`
+  - `flutter test`
+  - Prueba manual: crear budget, agregar gasto, revisar progress y warnings.
+
+---
+
+## 010 - Reports
+
+- **ID:** `010`
+- **Name:** Reports
+- **Branch:** `task/010-reports`
+- **Expected commit:** `010: reports`
+- **Priority/order:** 10
+- **Status:** `Pending`
+- **Required specs:**
+  - `specs/data-model.md`
+  - `specs/features.md`
+  - `specs/screen-inventory.md`
+  - `specs/user-flows.md`
+  - `specs/design-system.md`
+  - `specs/require/reports/screen.png`
+  - `specs/require/reports/code.html`
+- **Objective:** Implementar reportes y analytics derivados de la base local.
+- **Included scope:**
+  - Spending by category.
+  - Income vs expense.
+  - Cash flow over time.
+  - Trend charts.
+  - Weekly/monthly/yearly tabs.
+  - Custom date range.
+  - Most spent category.
+  - Average daily spend.
+  - Net savings trend.
+  - Empty/no-data state.
+- **Out of scope:**
+  - Export PDF/CSV final.
+  - Machine learning o predicciones remotas.
+- **Required implementation:**
+  - Reportes se calculan desde transactions, splits, categories y payment sources.
+  - Excluir transfers de income vs expense y spending charts.
+  - Excluir deleted y void.
+  - Category charts deben considerar split lines.
+- **Acceptance criteria:**
+  - Cumple view 11 de `specs/screen-inventory.md`.
+  - Cumple flow 7 de `specs/user-flows.md`.
+  - La UI coincide razonablemente con `specs/require/reports`.
+  - Cambiar rango actualiza charts y metricas.
+  - No se almacenan summaries manuales como fuente de verdad.
+- **Required validation:**
+  - `flutter analyze`
+  - `flutter test`
+  - Prueba manual: comparar reportes contra transacciones de prueba.
+
+---
+
+## 011 - Recurring, Bills, Notifications
+
+- **ID:** `011`
+- **Name:** Recurring, Bills, Notifications
+- **Branch:** `task/011-recurring-bills-notifications`
+- **Expected commit:** `011: recurring bills notifications`
+- **Priority/order:** 11
+- **Status:** `Pending`
+- **Required specs:**
+  - `specs/data-model.md`
+  - `specs/features.md`
+  - `specs/screen-inventory.md`
+  - `specs/user-flows.md`
+  - `specs/require/recurring_transactions/screen.png`
+  - `specs/require/recurring_transactions/code.html`
+  - `specs/require/notifications/screen.png`
+  - `specs/require/notifications/code.html`
+- **Objective:** Implementar reglas recurrentes, bills/subscriptions y centro de notificaciones locales/in-app.
+- **Included scope:**
+  - Lista de recurring income/expense.
+  - Upcoming recurring items.
+  - Frequency daily, weekly, monthly, yearly.
+  - Active/inactive toggle.
+  - Edit recurring rule.
+  - Bills/subscriptions model and basic list.
+  - Due dates, amount, paid/unpaid state.
+  - Notification center con budget warnings, upcoming bills, recurring reminders y goal milestones.
+- **Out of scope:**
+  - Push remoto.
+  - Workers cloud.
+  - Integracion con calendario externo.
+- **Required implementation:**
+  - `next_run_at` debe avanzar al generar una transaction.
+  - Auto-post debe crear transaction local cuando aplique.
+  - Notifications se guardan localmente.
+  - Las reglas inactivas no generan items.
+- **Acceptance criteria:**
+  - Cumple views 15, 16 y 18 de `specs/screen-inventory.md`.
+  - Cumple flows 8 y 10 de `specs/user-flows.md`.
+  - La UI coincide razonablemente con recurring y notifications exports.
+  - Recurring genera o prepara proximas ocurrencias sin internet.
+  - Notifications son accionables y marcables como leidas.
+- **Required validation:**
+  - `flutter analyze`
+  - `flutter test`
+  - Prueba manual: crear recurring, avanzar proxima fecha, revisar reminder local.
+
+---
+
+## 012 - Savings Goals
+
+- **ID:** `012`
+- **Name:** Savings Goals
+- **Branch:** `task/012-savings-goals`
+- **Expected commit:** `012: savings goals`
+- **Priority/order:** 12
+- **Status:** `Pending`
+- **Required specs:**
+  - `specs/data-model.md`
+  - `specs/features.md`
+  - `specs/screen-inventory.md`
+  - `specs/user-flows.md`
+  - `specs/require/savings_goals/screen.png`
+  - `specs/require/savings_goals/code.html`
+- **Objective:** Implementar metas de ahorro locales con progreso, contribuciones y deadline.
+- **Included scope:**
+  - Lista de goals.
+  - Crear goal con nombre, target amount y deadline opcional.
+  - Current progress.
+  - Linked source opcional.
+  - Contribute to goal action.
+  - Goal cards con progreso visual.
+  - Completion state.
+- **Out of scope:**
+  - Inversiones avanzadas.
+  - Sincronizacion compartida.
+- **Required implementation:**
+  - Contributions deben guardarse en `goal_contributions`.
+  - Current amount puede ser cacheado o derivado, pero debe mantenerse correcto.
+  - Linked source debe afectar balance solo si el flujo de contribution lo define claramente.
+- **Acceptance criteria:**
+  - Cumple view 17 de `specs/screen-inventory.md`.
+  - Cumple flow 9 de `specs/user-flows.md`.
+  - La UI coincide razonablemente con `specs/require/savings_goals`.
+  - Contribuir actualiza progreso.
+  - Goal completado muestra estado visual correcto.
+- **Required validation:**
+  - `flutter analyze`
+  - `flutter test`
+  - Prueba manual: crear goal, contribuir y completar.
+
+---
+
+## 013 - Settings, Export/Import, Reset
+
+- **ID:** `013`
+- **Name:** Settings, Export/Import, Reset
+- **Branch:** `task/013-settings-export-import`
+- **Expected commit:** `013: settings export import reset`
+- **Priority/order:** 13
+- **Status:** `Pending`
+- **Required specs:**
+  - `specs/data-model.md`
+  - `specs/local-storage.md`
+  - `specs/features.md`
+  - `specs/screen-inventory.md`
+  - `specs/user-flows.md`
+  - `specs/require/settings/screen.png`
+  - `specs/require/settings/code.html`
+- **Objective:** Implementar preferencias, backup/restauracion local, exportaciones y reset local destructivo.
+- **Included scope:**
+  - Settings screen.
+  - Currency.
+  - Theme/dark mode.
+  - Notification preferences.
+  - Language.
+  - Data screen entry.
+  - Export full ZIP backup local.
+  - Import ZIP backup local.
+  - Export CSV/PDF local.
+  - Reset local data to defaults with confirmation.
+  - Success/error states.
+- **Out of scope:**
+  - Cloud backup.
+  - Sync remoto.
+  - Cifrado avanzado si no existe en specs del MVP.
+- **Required implementation:**
+  - Export ZIP debe incluir SQLite data y metadata necesaria.
+  - Import ZIP debe restaurar estado completo local.
+  - Reset debe borrar datos locales y reinitializar defaults.
+  - Acciones destructivas requieren confirmacion.
+- **Acceptance criteria:**
+  - Cumple views 19, 20 y 21 de `specs/screen-inventory.md`.
+  - Cumple flow 11 de `specs/user-flows.md`.
+  - La UI coincide razonablemente con `specs/require/settings`.
+  - Backup exportado puede restaurarse en una base limpia.
+  - Reset deja la app lista para onboarding/setup.
+- **Required validation:**
+  - `flutter analyze`
+  - `flutter test`
+  - Prueba manual: exportar, resetear, importar y verificar datos.
+
+---
+
+## 014 - Final QA and MVP Hardening
+
+- **ID:** `014`
+- **Name:** Final QA and MVP Hardening
+- **Branch:** `task/014-final-qa-mvp`
+- **Expected commit:** `014: final qa mvp`
+- **Priority/order:** 14
+- **Status:** `Pending`
+- **Required specs:**
+  - `specs/product-overview.md`
+  - `specs/features.md`
+  - `specs/screen-inventory.md`
+  - `specs/user-flows.md`
+  - `specs/design-system.md`
+  - `specs/local-storage.md`
+  - `specs/require/views.md`
+  - `specs/require/README.md`
+- **Objective:** Validar el MVP completo, corregir defectos de integracion y asegurar que la app funciona local-first.
+- **Included scope:**
+  - Revisar navegacion de 5 tabs.
+  - Revisar FAB y quick actions.
+  - Revisar loading, empty, error, success, confirmation y delete confirmation states.
+  - Revisar budget exceeded warnings y no-results state.
+  - Revisar dark mode y contraste.
+  - Revisar accesibilidad basica y touch targets.
+  - Revisar que charts tengan labels y summary values.
+  - Revisar que no haya llamadas a APIs externas.
+  - Revisar que datos persistan localmente entre sesiones.
+  - Corregir bugs pequenos de integracion encontrados.
+- **Out of scope:**
+  - Nuevas features fuera de specs.
+  - Redisenos no requeridos.
+  - Sync cloud.
+- **Required implementation:**
+  - Mantener diffs pequenos y enfocados en hardening.
+  - Documentar cualquier excepcion a specs.
+  - Confirmar que cada flujo principal funciona de punta a punta.
+- **Acceptance criteria:**
+  - Todas las pantallas principales cumplen `specs/screen-inventory.md`.
+  - Todas las referencias visuales relevantes de `specs/require/` fueron consideradas.
+  - Los flujos 1 a 11 de `specs/user-flows.md` funcionan localmente.
+  - No hay dependencia funcional de internet.
+  - `flutter analyze`, `flutter test` y build mobile pasan.
+- **Required validation:**
+  - `flutter analyze`
+  - `flutter test`
+  - Build Android o iOS disponible en el entorno.
+  - Smoke manual completo de onboarding, setup, categories, transaction, dashboard, accounts, budgets, reports, recurring, goals, settings y backup.
