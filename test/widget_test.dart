@@ -21,10 +21,9 @@ void main() {
     await tester.pumpWidget(FinanceApp(database: database));
     await tester.pumpAndSettle();
 
-    expect(find.text('Finance'), findsOneWidget);
-    expect(find.text('Track your money with clarity.'), findsOneWidget);
-    expect(find.text('Start tracking'), findsOneWidget);
-    expect(find.text('Continue as guest'), findsOneWidget);
+    expect(find.text('Master your money, effortlessly.'), findsOneWidget);
+    expect(find.text('Get Started'), findsOneWidget);
+    expect(find.text('Continue as Guest'), findsOneWidget);
   });
 
   testWidgets('onboarding CTA creates guest user and opens setup', (
@@ -33,10 +32,10 @@ void main() {
     await tester.pumpWidget(FinanceApp(database: database));
     await tester.pumpAndSettle();
 
-    await tester.tap(find.text('Start tracking'));
+    await tester.tap(find.text('Get Started'));
     await tester.pumpAndSettle();
 
-    expect(find.text('Set up your account'), findsOneWidget);
+    expect(find.text('Add Account'), findsOneWidget);
 
     final repository = FinanceRepository(database);
     expect(await repository.hasLocalUser(), isTrue);
@@ -52,7 +51,7 @@ void main() {
     await tester.pumpWidget(FinanceApp(database: database));
     await tester.pumpAndSettle();
 
-    expect(find.text('Set up your account'), findsOneWidget);
+    expect(find.text('Add Account'), findsOneWidget);
     expect(find.byIcon(Icons.account_balance_wallet_rounded), findsNothing);
   });
 
@@ -65,12 +64,7 @@ void main() {
     await tester.pumpWidget(FinanceApp(database: database));
     await tester.pumpAndSettle();
 
-    await tester.scrollUntilVisible(
-      find.text('Save setup'),
-      300,
-      scrollable: find.byType(Scrollable).first,
-    );
-    await tester.tap(find.text('Save setup'));
+    await tester.tap(find.text('Continue'));
     await tester.pump();
 
     expect(find.text('Account name is required'), findsOneWidget);
@@ -86,16 +80,9 @@ void main() {
     await tester.pumpWidget(FinanceApp(database: database));
     await tester.pumpAndSettle();
 
-    await tester.enterText(find.byType(TextFormField).at(0), 'Cash');
-    await tester.enterText(find.byType(TextFormField).at(1), 'Wallet');
-    await tester.enterText(find.byType(TextFormField).at(2), '123.45');
-    await tester.enterText(find.byType(TextFormField).at(3), '2500');
-    await tester.scrollUntilVisible(
-      find.text('Save setup'),
-      300,
-      scrollable: find.byType(Scrollable).first,
-    );
-    await tester.tap(find.text('Save setup'));
+    await tester.enterText(find.byType(TextFormField).at(0), 'Main Checking');
+    await tester.enterText(find.byType(TextFormField).at(1), '123.45');
+    await tester.tap(find.text('Continue'));
     await tester.pumpAndSettle();
 
     expect(find.text('Total balance'), findsOneWidget);
@@ -104,9 +91,10 @@ void main() {
     final user = (await repository.getGuestUser())!;
     final sources = await repository.listActivePaymentSources(user.id);
     expect(sources, hasLength(1));
-    expect(sources.single.name, 'Cash');
-    expect(sources.single.providerLabel, 'Wallet');
-    expect(sources.single.currencyCode, 'MXN');
+    expect(sources.single.name, 'Main Checking');
+    expect(sources.single.providerLabel, isNull);
+    expect(sources.single.currencyCode, 'USD');
+    expect(sources.single.type, 'checking');
     expect(sources.single.currentBalanceMinor, 12345);
 
     final categories = await repository.listActiveCategories(user.id);
