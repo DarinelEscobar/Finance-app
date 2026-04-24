@@ -60,3 +60,30 @@ Este archivo registra tareas completadas, validadas y confirmadas funcionales. U
   - Income increases balances, expenses decrease balances, transfers move money between sources without becoming expenses, and soft delete reverts posted balance effects.
 - **Risks or follow-up:**
   - `build_runner` requires `--force-jit` in this environment because the current Dart/Flutter toolchain fails AOT build-script compilation when packages expose build hooks.
+
+## 002 - Onboarding / Welcome
+
+- **ID:** `002`
+- **Name:** Onboarding / Welcome
+- **Final branch:** `task/002-onboarding`
+- **Commit hash:** `0cc4b7a`
+- **Closed date:** `2026-04-24`
+- **Specs verified:**
+  - `specs/product-overview.md`
+  - `specs/screen-inventory.md`
+  - `specs/user-flows.md`
+  - `specs/design-system.md`
+  - `specs/require/onboarding/screen.png`
+  - `specs/require/onboarding/code.html`
+- **Validations executed:**
+  - `flutter analyze`
+  - `flutter test`
+- **Implementation summary:**
+  - Refactored app startup into `FinanceApp`, `FinanceScope`, and `StartupGate`.
+  - Added local startup routing for clean install, guest-without-setup, and setup-complete states.
+  - Implemented onboarding with local-first copy, guest CTA, loading state, and navigation to account setup without remote auth.
+- **Functional result:**
+  - Clean local database opens onboarding; tapping the CTA creates a local guest user and routes to account setup.
+  - Existing guest users without setup skip onboarding and open account setup directly.
+- **Risks or follow-up:**
+  - Account setup is intentionally a minimal destination in task 002 and is implemented fully in task 003.
