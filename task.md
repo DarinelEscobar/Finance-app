@@ -4,19 +4,19 @@
 
 La carpeta `specs/` es la fuente de verdad del MVP. Toda implementacion debe cumplir los documentos de producto, modelo de datos, almacenamiento local, flujos, pantallas, diseno y referencias visuales dentro de `specs/`. Si hay conflicto entre una decision tecnica y `specs/`, se debe ajustar la implementacion o documentar la excepcion antes de cerrar la tarea.
 
-Los exports visuales en `specs/require/` son contrato obligatorio para cualquier tarea que cree o modifique UI. Cada carpeta de vista contiene:
+Los exports visuales en `specs/require/` son referencia visual obligatoria para cualquier tarea que cree o modifique UI. No son un contrato pixel-perfect; sirven como ejemplo de como deberia lucir y sentirse cada pantalla.
 
 - `screen.png` como referencia visual principal.
 - `code.html` como referencia de estructura, jerarquia, spacing, contenido base y componentes esperados.
 
-No se deben crear vistas "desde cero" cuando exista un export en `specs/require/`. La implementacion Flutter debe adaptar la vista existente del HTML/screenshot al stack del proyecto, conservando la intencion visual y funcional. No agregar features, secciones, estados o composiciones que no esten pedidos por `specs/`, salvo que sean necesarios para loading, empty, error, success o confirmation states requeridos.
+No se deben crear vistas "desde cero" cuando exista un export en `specs/require/`. La implementacion Flutter debe usar el HTML/screenshot como punto de partida visual y estructural, pero debe adaptar la pantalla a las features, estados y flujos requeridos por `specs/`. Si una feature requerida no aparece en el export visual, integrarla de forma coherente con el lenguaje visual del export. No agregar features, secciones, estados o composiciones que no esten pedidos por `specs/`, salvo que sean necesarios para loading, empty, error, success o confirmation states requeridos.
 
 ## Working Rules
 
 - Mantener toda la aplicacion local-first: datos en el telefono, sin API externa, backend remoto, Firebase, Supabase ni base de datos externa.
 - Usar SQLite + Drift como persistencia local, segun `specs/local-storage.md`.
 - Antes de implementar una pantalla, revisar `specs/require/views.md`, el `screen.png` y el `code.html` declarados en la tarea.
-- Para cada pantalla con export visual, mapear explicitamente el HTML a widgets Flutter equivalentes antes de inventar layout propio.
+- Para cada pantalla con export visual, identificar los elementos relevantes del HTML y traducirlos a widgets Flutter equivalentes, ajustando layout y contenido cuando las features requeridas lo necesiten.
 - Si una subpantalla requerida por `screen-inventory.md` no tiene export directo en `specs/require/`, usar el screen inventory y reutilizar patrones visuales del export mas cercano; no introducir una experiencia nueva fuera de specs.
 - Crear cada rama desde el commit final de la tarea anterior.
 - Usar ramas cronologicas: `task/001-local-data-foundation`, `task/002-onboarding`, etc.
@@ -29,8 +29,8 @@ No se deben crear vistas "desde cero" cuando exista un export en `specs/require/
 ## Required Validation Before Completing Any Task
 
 - Revisar los specs obligatorios declarados en la tarea.
-- Comparar la UI implementada contra cada `screen.png` y `code.html` requerido por la tarea.
-- Confirmar que no se inventaron vistas, secciones o features fuera de los exports visuales y specs declarados.
+- Comparar la UI implementada contra cada `screen.png` y `code.html` requerido por la tarea como referencia visual.
+- Confirmar que cualquier diferencia contra los exports responde a features, estados o flujos requeridos por specs, no a una vista inventada fuera de alcance.
 - Ejecutar `flutter analyze`.
 - Ejecutar `flutter test`.
 - Ejecutar build o prueba manual cuando aplique.
@@ -73,7 +73,7 @@ No se deben crear vistas "desde cero" cuando exista un export en `specs/require/
   - Pantalla completa de budgets.
   - Eliminacion fisica de categorias con historico.
 - **Required implementation:**
-  - La pantalla debe adaptarse desde `specs/require/categories/code.html` y `screen.png`; no crear una composicion visual distinta ni agregar features fuera de specs.
+  - La pantalla debe usar `specs/require/categories/code.html` y `screen.png` como referencia visual principal; adaptar lo necesario para cubrir las features de esta tarea sin agregar features fuera de specs.
   - Default categories deben incluir las categorias listadas en `screen-inventory.md`.
   - Categoria expense solo debe usarse para expense.
   - Categoria income solo debe usarse para income.
@@ -81,7 +81,7 @@ No se deben crear vistas "desde cero" cuando exista un export en `specs/require/
 - **Acceptance criteria:**
   - Cumple views 7 y 8 de `specs/screen-inventory.md`.
   - Cumple flow 4 de `specs/user-flows.md`.
-  - La UI conserva la estructura, jerarquia visual, spacing y contenido base de `specs/require/categories`.
+  - La UI se alinea razonablemente con la estructura, jerarquia visual, spacing y contenido base de `specs/require/categories`.
   - Nueva categoria aparece en Add Transaction.
   - Categoria archivada no aparece para nuevas transacciones, pero sigue visible en historico.
 - **Required validation:**
@@ -124,7 +124,7 @@ No se deben crear vistas "desde cero" cuando exista un export en `specs/require/
   - Bank sync.
   - Recurring avanzado completo si queda para tarea 011.
 - **Required implementation:**
-  - La pantalla debe adaptarse desde `specs/require/add_transaction/code.html` y `screen.png`; no crear una composicion visual distinta ni agregar features fuera de specs.
+  - La pantalla debe usar `specs/require/add_transaction/code.html` y `screen.png` como referencia visual principal; adaptar lo necesario para cubrir las features de esta tarea sin agregar features fuera de specs.
   - Expense requiere categoria expense y cuenta origen.
   - Income requiere categoria income y cuenta origen.
   - Transfer requiere origen, destino distinto y amount valido.
@@ -133,7 +133,7 @@ No se deben crear vistas "desde cero" cuando exista un export en `specs/require/
 - **Acceptance criteria:**
   - Cumple view 5 de `specs/screen-inventory.md`.
   - Cumple flows 2 y 3 de `specs/user-flows.md`.
-  - La UI conserva la estructura, jerarquia visual, spacing y contenido base de `specs/require/add_transaction`.
+  - La UI se alinea razonablemente con la estructura, jerarquia visual, spacing y contenido base de `specs/require/add_transaction`.
   - Dashboard, accounts y transaction list reflejan la transaccion guardada.
   - Transfer no aparece como expense en analytics.
 - **Required validation:**
@@ -180,14 +180,14 @@ No se deben crear vistas "desde cero" cuando exista un export en `specs/require/
   - Budget detail completo.
   - Profile avanzado.
 - **Required implementation:**
-  - La pantalla debe adaptarse desde `specs/require/dashboard/code.html`, `screen.png` y el empty state exportado; no crear una composicion visual distinta ni agregar features fuera de specs.
+  - La pantalla debe usar `specs/require/dashboard/code.html`, `screen.png` y el empty state exportado como referencia visual principal; adaptar lo necesario para cubrir las features de esta tarea sin agregar features fuera de specs.
   - Los datos deben venir de repositorios/servicios locales, no de listas hardcodeadas.
   - Transfer debe excluirse de expense analytics.
   - Deleted y void transactions deben excluirse de resumenes.
   - La vista debe refrescar al volver de Add Transaction.
 - **Acceptance criteria:**
   - Cumple view 3 de `specs/screen-inventory.md`.
-  - La UI conserva la estructura, jerarquia visual, spacing y contenido base de `specs/require/dashboard`.
+  - La UI se alinea razonablemente con la estructura, jerarquia visual, spacing y contenido base de `specs/require/dashboard`.
   - App muestra empty state util cuando no hay transacciones.
   - Al agregar income/expense se actualizan tarjetas y recientes.
   - Mantiene bottom navigation y FAB esperados.
@@ -232,7 +232,7 @@ No se deben crear vistas "desde cero" cuando exista un export en `specs/require/
   - Export de transacciones.
   - Reportes graficos avanzados.
 - **Required implementation:**
-  - Las pantallas deben adaptarse desde `specs/require/transactions/code.html`, `transaction_details/code.html` y sus `screen.png`; no crear composiciones visuales distintas ni agregar features fuera de specs.
+  - Las pantallas deben usar `specs/require/transactions/code.html`, `transaction_details/code.html` y sus `screen.png` como referencia visual principal; adaptar lo necesario para cubrir las features de esta tarea sin agregar features fuera de specs.
   - Delete debe ser soft delete y revertir balance.
   - Edit debe aplicar delta logic y usar transaccion de DB.
   - Duplicate debe crear nueva transaction editable o guardada segun patron elegido.
@@ -240,7 +240,7 @@ No se deben crear vistas "desde cero" cuando exista un export en `specs/require/
 - **Acceptance criteria:**
   - Cumple views 4 y 6 de `specs/screen-inventory.md`.
   - Cumple shared interaction rules de `specs/user-flows.md`.
-  - La UI conserva la estructura, jerarquia visual, spacing y contenido base de `specs/require/transactions` y `transaction_details`.
+  - La UI se alinea razonablemente con la estructura, jerarquia visual, spacing y contenido base de `specs/require/transactions` y `transaction_details`.
   - Busqueda sin resultados muestra no-results state.
   - Eliminar requiere confirmacion y mantiene historico seguro.
 - **Required validation:**
@@ -284,7 +284,7 @@ No se deben crear vistas "desde cero" cuando exista un export en `specs/require/
   - Debt amortization.
   - Investment performance tracking.
 - **Required implementation:**
-  - Las pantallas deben adaptarse desde `specs/require/accounts/code.html`, `transfer/code.html` y sus `screen.png`; Account Detail debe reutilizar esos patrones y limitarse a `screen-inventory.md`.
+  - Las pantallas deben usar `specs/require/accounts/code.html`, `transfer/code.html` y sus `screen.png` como referencia visual principal; Account Detail debe reutilizar esos patrones y limitarse a `screen-inventory.md`.
   - Todas las cuentas usan `payment_sources`.
   - `include_in_total_balance` controla el total.
   - Transfer debe crear transaction tipo transfer.
@@ -293,7 +293,7 @@ No se deben crear vistas "desde cero" cuando exista un export en `specs/require/
 - **Acceptance criteria:**
   - Cumple views 12, 13 y 14 de `specs/screen-inventory.md`.
   - Cumple flow 6 de `specs/user-flows.md`.
-  - La UI conserva la estructura, jerarquia visual, spacing y contenido base de `specs/require/accounts` y `transfer`.
+  - La UI se alinea razonablemente con la estructura, jerarquia visual, spacing y contenido base de `specs/require/accounts` y `transfer`.
   - Transfer no afecta expense reports ni budgets.
   - Cuenta archivada no aparece como opcion principal para nuevas transacciones.
 - **Required validation:**
@@ -334,7 +334,7 @@ No se deben crear vistas "desde cero" cuando exista un export en `specs/require/
   - Presupuestos arbitrarios complejos fuera de specs.
   - Sync o reglas compartidas multiusuario.
 - **Required implementation:**
-  - La pantalla debe adaptarse desde `specs/require/budgets/code.html` y `screen.png`; Category Budget Detail debe reutilizar ese patron y limitarse a `screen-inventory.md`.
+  - La pantalla debe usar `specs/require/budgets/code.html` y `screen.png` como referencia visual principal; Category Budget Detail debe reutilizar ese patron y limitarse a `screen-inventory.md`.
   - Usage se deriva de posted transactions en rango.
   - Incluir split transactions por linea.
   - Excluir transfers.
@@ -343,7 +343,7 @@ No se deben crear vistas "desde cero" cuando exista un export en `specs/require/
 - **Acceptance criteria:**
   - Cumple views 9 y 10 de `specs/screen-inventory.md`.
   - Cumple flow 5 de `specs/user-flows.md`.
-  - La UI conserva la estructura, jerarquia visual, spacing y contenido base de `specs/require/budgets`.
+  - La UI se alinea razonablemente con la estructura, jerarquia visual, spacing y contenido base de `specs/require/budgets`.
   - Cambios en transacciones actualizan budget usage.
   - Se muestran estados near-limit y over-budget.
 - **Required validation:**
@@ -385,7 +385,7 @@ No se deben crear vistas "desde cero" cuando exista un export en `specs/require/
   - Export PDF/CSV final.
   - Machine learning o predicciones remotas.
 - **Required implementation:**
-  - La pantalla debe adaptarse desde `specs/require/reports/code.html` y `screen.png`; no crear una composicion visual distinta ni agregar features fuera de specs.
+  - La pantalla debe usar `specs/require/reports/code.html` y `screen.png` como referencia visual principal; adaptar lo necesario para cubrir las features de esta tarea sin agregar features fuera de specs.
   - Reportes se calculan desde transactions, splits, categories y payment sources.
   - Excluir transfers de income vs expense y spending charts.
   - Excluir deleted y void.
@@ -393,7 +393,7 @@ No se deben crear vistas "desde cero" cuando exista un export en `specs/require/
 - **Acceptance criteria:**
   - Cumple view 11 de `specs/screen-inventory.md`.
   - Cumple flow 7 de `specs/user-flows.md`.
-  - La UI conserva la estructura, jerarquia visual, spacing y contenido base de `specs/require/reports`.
+  - La UI se alinea razonablemente con la estructura, jerarquia visual, spacing y contenido base de `specs/require/reports`.
   - Cambiar rango actualiza charts y metricas.
   - No se almacenan summaries manuales como fuente de verdad.
 - **Required validation:**
@@ -435,7 +435,7 @@ No se deben crear vistas "desde cero" cuando exista un export en `specs/require/
   - Workers cloud.
   - Integracion con calendario externo.
 - **Required implementation:**
-  - Las pantallas deben adaptarse desde `specs/require/recurring_transactions/code.html`, `notifications/code.html` y sus `screen.png`; Bills debe reutilizar esos patrones y limitarse a `screen-inventory.md`.
+  - Las pantallas deben usar `specs/require/recurring_transactions/code.html`, `notifications/code.html` y sus `screen.png` como referencia visual principal; Bills debe reutilizar esos patrones y limitarse a `screen-inventory.md`.
   - `next_run_at` debe avanzar al generar una transaction.
   - Auto-post debe crear transaction local cuando aplique.
   - Notifications se guardan localmente.
@@ -443,7 +443,7 @@ No se deben crear vistas "desde cero" cuando exista un export en `specs/require/
 - **Acceptance criteria:**
   - Cumple views 15, 16 y 18 de `specs/screen-inventory.md`.
   - Cumple flows 8 y 10 de `specs/user-flows.md`.
-  - La UI conserva la estructura, jerarquia visual, spacing y contenido base de recurring y notifications exports.
+  - La UI se alinea razonablemente con la estructura, jerarquia visual, spacing y contenido base de recurring y notifications exports.
   - Recurring genera o prepara proximas ocurrencias sin internet.
   - Notifications son accionables y marcables como leidas.
 - **Required validation:**
@@ -481,14 +481,14 @@ No se deben crear vistas "desde cero" cuando exista un export en `specs/require/
   - Inversiones avanzadas.
   - Sincronizacion compartida.
 - **Required implementation:**
-  - La pantalla debe adaptarse desde `specs/require/savings_goals/code.html` y `screen.png`; no crear una composicion visual distinta ni agregar features fuera de specs.
+  - La pantalla debe usar `specs/require/savings_goals/code.html` y `screen.png` como referencia visual principal; adaptar lo necesario para cubrir las features de esta tarea sin agregar features fuera de specs.
   - Contributions deben guardarse en `goal_contributions`.
   - Current amount puede ser cacheado o derivado, pero debe mantenerse correcto.
   - Linked source debe afectar balance solo si el flujo de contribution lo define claramente.
 - **Acceptance criteria:**
   - Cumple view 17 de `specs/screen-inventory.md`.
   - Cumple flow 9 de `specs/user-flows.md`.
-  - La UI conserva la estructura, jerarquia visual, spacing y contenido base de `specs/require/savings_goals`.
+  - La UI se alinea razonablemente con la estructura, jerarquia visual, spacing y contenido base de `specs/require/savings_goals`.
   - Contribuir actualiza progreso.
   - Goal completado muestra estado visual correcto.
 - **Required validation:**
@@ -532,7 +532,7 @@ No se deben crear vistas "desde cero" cuando exista un export en `specs/require/
   - Sync remoto.
   - Cifrado avanzado si no existe en specs del MVP.
 - **Required implementation:**
-  - La pantalla debe adaptarse desde `specs/require/settings/code.html` y `screen.png`; Export/Data debe reutilizar ese patron y limitarse a `screen-inventory.md`.
+  - La pantalla debe usar `specs/require/settings/code.html` y `screen.png` como referencia visual principal; Export/Data debe reutilizar ese patron y limitarse a `screen-inventory.md`.
   - Export ZIP debe incluir SQLite data y metadata necesaria.
   - Import ZIP debe restaurar estado completo local.
   - Reset debe borrar datos locales y reinitializar defaults.
@@ -540,7 +540,7 @@ No se deben crear vistas "desde cero" cuando exista un export en `specs/require/
 - **Acceptance criteria:**
   - Cumple views 19 y 20 de `specs/screen-inventory.md`.
   - Cumple flow 11 de `specs/user-flows.md`.
-  - La UI conserva la estructura, jerarquia visual, spacing y contenido base de `specs/require/settings`.
+  - La UI se alinea razonablemente con la estructura, jerarquia visual, spacing y contenido base de `specs/require/settings`.
   - Backup exportado puede restaurarse en una base limpia.
   - Reset deja la app lista para onboarding/setup.
 - **Required validation:**
