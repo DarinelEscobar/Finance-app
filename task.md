@@ -41,7 +41,7 @@ La carpeta `specs/` es la fuente de verdad del MVP. Toda implementacion debe cum
 - **Branch:** `task/001-local-data-foundation`
 - **Expected commit:** `001: local data foundation`
 - **Priority/order:** 1
-- **Status:** `Pending`
+- **Status:** `Ready for validation`
 - **Required specs:**
   - `specs/data-model.md`
   - `specs/local-storage.md`
