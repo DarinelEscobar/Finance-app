@@ -39,7 +39,7 @@ La carpeta `specs/` es la fuente de verdad del MVP. Toda implementacion debe cum
 - **Branch:** `task/003-account-setup`
 - **Expected commit:** `003: account setup`
 - **Priority/order:** 3
-- **Status:** `Pending`
+- **Status:** `Ready for validation`
 - **Required specs:**
   - `specs/data-model.md`
   - `specs/local-storage.md`
